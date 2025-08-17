@@ -59,13 +59,14 @@
       {% unless site.theme_mode %}
         <button
           type="button"
-          class="btn btn-link nav-link"
+          class="btn btn-link nav-link toggle-btn"
           aria-label="Switch Mode"
           id="mode-toggle"
           onClick="iconSwap()"
+          data-bs-toggle="button"
         >
           {% comment %} <i class="fas fa-adjust"></i> {% endcomment %}
-          <i class="bi bi-brightness-high-fill"></i>
+          <span class="toggle-circle" id="circle-toggle"><i class="bi bi-brightness-high-fill"></i></span>
         </button>
       {% endunless %}
       <button type="button" id="search-trigger" class="btn btn-link" aria-label="Search">
@@ -93,16 +94,18 @@
 
 <script>
   $toggle = document.getElementById('mode-toggle');
+  $circle_toggle = document.getElementById('circle-toggle');
   if (Theme.visualState == 'dark') {
-    $toggle.innerHTML = '<i class="bi bi-brightness-high-fill"></i>';
+    $circle_toggle.innerHTML = '<i class="bi bi-brightness-high-fill"></i>';
   } else if (Theme.visualState == 'light') {
-    $toggle.innerHTML = '<i class="bi bi-moon-stars"></i>';
+    $circle_toggle.innerHTML = '<i class="bi bi-moon-stars"></i>';
   }
   function iconSwap() {
+    $toggle.classList.toggle('active');
     if (Theme.visualState == 'dark') {
-      $toggle.innerHTML = '<i class="bi bi-moon-stars"></i>';
+      $circle_toggle.innerHTML = '<i class="bi bi-moon-stars"></i>';
     } else if (Theme.visualState == 'light') {
-      $toggle.innerHTML = '<i class="bi bi-brightness-high-fill"></i>';
+      $circle_toggle.innerHTML = '<i class="bi bi-brightness-high-fill"></i>';
     }
   }
 </script>

@@ -7,4 +7,5 @@ categories: [Personal]
 tags: [typography]
 pin: true
 math: true
+comments: true
 ---

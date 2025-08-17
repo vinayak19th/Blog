@@ -49,3 +49,39 @@
     visibility: visible;
   }
 }
+
+.toggle-btn {
+  position: relative;
+  width: 3.5rem;
+  height: 1.9rem;
+  background-color: #ccc;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  outline: none;
+  transition: background 0.4s;
+  padding: 0;
+}
+
+
+.toggle-circle {
+  position: absolute;
+  top: 0.2rem;
+  left: 0.3rem;
+  width: 1.5rem;
+  height: 1.5rem;
+  background: #333;
+  color: white;
+  border-radius: 50%;
+  transition: transform 0.4s ease; /* smooth sliding */
+}
+
+.toggle-btn.active .toggle-circle {
+  transform: translateX(1.4rem); /* moves to the right */
+  background: white;
+  color: #333;
+}
+
+.toggle-btn.active {
+  background-color: #ccc;
+}
