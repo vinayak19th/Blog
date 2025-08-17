@@ -55,6 +55,7 @@ $sidebar-display: 'sidebar-display'; /* the attribute for sidebar display */
 
   #avatar {
     display: block;
+    margin-left: 2.5rem;
     width: 6.5rem;
     height: 6.5rem;
     overflow: hidden;
@@ -76,6 +77,10 @@ $sidebar-display: 'sidebar-display'; /* the attribute for sidebar display */
   }
 
   .profile-wrapper {
+    // display: flex;
+    // align-items: center;
+    // flex-direction: column;
+
     @include mx.mt-mb(2.5rem);
     @extend %clickable-transition;
 
