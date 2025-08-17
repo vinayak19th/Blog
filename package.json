@@ -94,6 +94,10 @@
                 "section": "Features"
               },
               {
+                "type": "content",
+                "section": "Content Changes"
+              },
+              {
                 "type": "fix",
                 "section": "Bug Fixes"
               },
