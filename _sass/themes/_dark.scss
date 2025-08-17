@@ -7,7 +7,7 @@
   --main-border-color: #cfcfd1;
 
   /* Common color */
-  --text-color: #ffffff;
+  --text-color: #e7e7e7;
   --text-muted-color: #a6adc8;
   --text-muted-highlight-color: #aeaeae;
   --heading-color: #cccccc;
@@ -65,20 +65,20 @@
   --footnote-target-bg: rgb(63 81 181);
   --btn-share-color: #6c757d;
   --btn-share-hover-color: #bfc1ca;
-  --card-bg: #313244;
-  --card-hover-bg: #464d51;
+  --card-bg: #1e1e2e;
+  --card-hover-bg: #45475a;
   --card-shadow: rgb(21 21 21 / 72%) 0 6px 18px 0,
     rgb(137 135 135 / 24%) 0 0 0 1px;
   --kbd-wrap-color: #6a6a6a;
   --kbd-text-color: #d3d3d3;
   --kbd-bg-color: #242424;
   --prompt-text-color: rgb(216 212 212 / 75%);
-  --prompt-tip-bg: rgb(22 60 36 / 64%);
-  --prompt-tip-icon-color: rgb(15 164 15 / 81%);
-  --prompt-info-bg: rgb(7 59 104 / 80%);
-  --prompt-info-icon-color: #d10050;
-  --prompt-warning-bg: rgb(90 69 3 / 88%);
-  --prompt-warning-icon-color: rgb(255 165 0 / 80%);
+  --prompt-tip-bg: #2f582bbd;
+  --prompt-tip-icon-color: #40a02b;
+  --prompt-info-bg: #927942ab;
+  --prompt-info-icon-color: #f9e2af;
+  --prompt-warning-bg: #5f2400d7;
+  --prompt-warning-icon-color: #bb7142;
   --prompt-danger-bg: rgb(86 28 8 / 80%);
   --prompt-danger-icon-color: #cd0202;
 
@@ -100,7 +100,7 @@
 
   /* Code highlight colors */
   --language-border-color: #2d2d2d;
-  --highlight-bg-color: #151515;
+  --highlight-bg-color: #11111b;
   --highlighter-rouge-color: #c9def1;
   --highlight-lineno-color: #808080;
   --inline-code-bg: rgb(255 255 255 / 5%);
@@ -108,7 +108,7 @@
   --code-header-text-color: #6a6a6a;
   --code-header-muted-color: #353535;
   --code-header-icon-color: #565656;
-  --clipboard-checked-color: #2bcc2b;
+  --clipboard-checked-color: #179299;
   --filepath-text-color: #cacaca;
 
   .light {
@@ -164,11 +164,11 @@
   .highlight,
   .highlight .w {
     color: #d0d0d0;
-    background-color: #151515;
+    background-color: var(--highlight-bg-color);
   }
 
   .highlight .err {
-    color: #151515;
+    color: var(--highlight-bg-color);
     background-color: #ac4142;
   }
 
@@ -211,7 +211,7 @@
 
   .highlight .gh {
     color: #6a9fb5;
-    background-color: #151515;
+    background-color: var(--highlight-bg-color);
     font-weight: bold;
   }
 

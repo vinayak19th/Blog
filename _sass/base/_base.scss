@@ -236,8 +236,9 @@ main {
   border-radius: 0.5rem;
   border: 1px solid var(--btn-border-color);
   padding: 0 0.4rem;
-  color: var(--text-muted-color);
+  color: var(--text-color);
   line-height: 1.3rem;
+  background-color: var(--button-bg);
 
   &:not(:last-child) {
     margin-right: 0.2rem;

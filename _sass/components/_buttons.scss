@@ -50,6 +50,7 @@
   }
 }
 
+
 .toggle-btn {
   position: relative;
   width: 3.5rem;
@@ -61,6 +62,10 @@
   outline: none;
   transition: background 0.4s;
   padding: 0;
+}
+
+.toggle-btn:hover {
+  background-color: #555;
 }
 
 .toggle-circle {
@@ -79,6 +84,11 @@
   transform: translateX(1.4rem); /* moves to the right */
   background: white;
 }
+
 .toggle-btn.active {
   background-color: #ccc;
+}
+
+.toggle-btn.active:hover {
+  background-color: #797979;
 }
