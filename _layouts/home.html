@@ -2,7 +2,6 @@
 layout: default
 refactor: true
 ---
-
 {% include lang.html %}
 
 {% assign all_pinned = site.posts | where: 'pin', 'true' %}
@@ -47,6 +46,13 @@ refactor: true
   {% endfor %}
 {% endif %}
 
+<div class="content">
+  <h2>A Bit About Me</h2>
+  I'm a PhD student exploring the exciting world of Quantum Machine Learning, where I love turning complex theory into
+  real-world impact. You can find out more about be at
+  <a href="https://www.vinayak19th.me/"> vinayak19th.me</a>.
+</div>
+<hr>
 <div id="post-list" class="flex-grow-1 px-xl-1">
   {% for post in posts %}
     <article class="card-wrapper card">
