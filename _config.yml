@@ -16,7 +16,7 @@ timezone: America/Phoenix
 
 title: Vinayak's Blog # the main title
 
-tagline: QML PhD Student @ [MPS Lab](https://labs.engineering.asu.edu/mps-lab/person/vinayak-sharma/) # it will display as the subtitle
+tagline: QML PhD Student @ MPS Lab # it will display as the subtitle
 
 description: >- # used by seo meta and the atom feed
   Just a place where I can post random thoughts I like sharing
