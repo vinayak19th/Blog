@@ -99,7 +99,7 @@ theme_mode: # [light | dark]
 
 # the avatar on sidebar, support local or CORS resources
 avatar: "https://gravatar.com/avatar/953d19833b6b06cb9f2adbefdcf626affa5f541296a9f6e41990c937181d84c9?s=600"
-gravatar_hash : 953d19833b6b06cb9f2adbefdcf626affa5f541296a9f6e41990c937181d84c9
+gravatar_hash: 953d19833b6b06cb9f2adbefdcf626affa5f541296a9f6e41990c937181d84c9
 
 # The URL of the site-wide social preview image used in SEO `og:image` meta tag.
 # It can be overridden by a customized `page.image` in front matter.
@@ -151,7 +151,9 @@ pwa:
 paginate: 10
 
 # The base URL of your site
-baseurl: ""
+baseurl: "/blog"
+#
+post_image_path: "/PostMedia"
 
 # ------------ The following options are not recommended to be modified ------------------
 
@@ -193,6 +195,10 @@ defaults:
     values:
       layout: page
       permalink: /:title/
+  - scope:
+      path: "/PostMedia"
+    values:
+      image: true
 
 sass:
   style: compressed
