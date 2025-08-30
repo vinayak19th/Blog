@@ -78,7 +78,11 @@ script_includes:
     </dialog>
   {% endif %}
 
-  <div class="content">
+  <div class="content
+    {% if "Article" == page.categories[0] %}
+      article
+      {% endif %}
+       ">
     {{ content }}
   </div>
 
