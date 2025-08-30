@@ -3,7 +3,7 @@ title: Bloch Sphere Demystified - Hitchhikers Guide to Quantum States
 description: A simplified explanation of the Bloch sphere representation of quantum states
 author: Vinayak
 date: 2025-08-16 11:33:00 +0800
-categories: [Articles, Quantum Computing]
+categories: [Article, Quantum Computing]
 tags: [quantum computing, quantum machine learning]
 pin: false
 math: true
@@ -13,33 +13,61 @@ comments: true
 {% assign parts = page.path | split: '/' %}
 {% assign image_path = site.post_image_path | append: '/' | append: parts[1] | append: '/' | append: parts[2] | append: '/' | append: "bloch" %}
 
-This article aims to provide a simplified and more intuitive explanation of the Bloch sphere assuming that the reader has a basic understanding of quantum computing such as what is a [qubit](https://www.ibm.com/think/topics/qubit)[^qubit], what are basis states and a basic understanding of high school geometry.
+This article aims to provide a simplified and more intuitive explanation of the Bloch sphere assuming that the reader has a basic understanding of quantum computing such as what is a [qubit](https://www.ibm.com/think/topics/qubit)[^qubit], what are basis states and a basic understanding of high school geometry. The Bloch sphere at its core the projective space of all complex numbers $\mathbb{C}^2$ which is also the true state space of a single qubit. This is well explained in [this video by Gabriele Carcassi](https://www.youtube.com/watch?v=KEzmw6cKOlU)[^bloch_video]. I'll try to explain it in a more intuitive way in this blog post.
 
-## What is the Bloch Sphere?
-The bloch sphere is a geometric representation of the state space of a single '*pure state*' qubit. 
-
+## I. Defining the Bloch Sphere
 According to [wikipedia](https://en.wikipedia.org/wiki/Bloch_sphere)[^wiki_bloch], we can define the bloch sphere as follows:
 
-**Definition 1 [Bloch Sphere]:**
-*In quantum mechanics and computing, the Bloch sphere is a geometrical representation of the pure state space of a two-level quantum mechanical system (qubit), named after the physicist Felix Bloch.*
+<div class="definition">
+<b>Definition 1</b> (Bloch Sphere). In quantum mechanics and computing, the Bloch sphere is a geometrical representation of the pure state space of a two-level quantum mechanical system (qubit), named after the physicist Felix Bloch.
+</div>
 
-While this definition is technically accurate, it may not be very intuitive for someone new to the concept. Let's break it down into simpler terms. 
+While this definition is technically accurate, it may not be very intuitive for someone new to the concept. Let's break it down and define some of our terms:
 
-**What exactly is a geometric representation?**
-In really simple terms, a geometric representation is a way to represent a set of objects (often numbers) as points in a geometric space. For example, we can represent real numbers on a number line, which is a one-dimensional geometric space. Similarly, we can represent complex numbers on a two-dimensional plane called the complex plane.
+1. **Two-level quantum mechanical system**: A two-level quantum mechanical system is simply a system that can exist in two distinct states such as spin the up and spin down states on an electron. Generally, these systems are used to create qubits in quantum computing and their states are labeled as $\ket{0}$ and $\ket{1}$.
+2. **Pure state**: A pure state is the most basic form of quantum state that can be fully described as a linear combination of basis states. For example, the states '$\alpha\ket{0} + \beta \ket{1}$' is a pure state as it is written purely as a superposition of the basis states.
 
-![Complex to plane]({{image_path}}/Complex.png){: .light }{: width="500" }
-![Complex to plane]({{image_path}}/ComplexDark.png){: .dark }{: width="500" }
+Armed with these definitions, we can now understand __what the Bloch Sphere is trying to represent__. The Bloch sphere is a way to visualize the state of a single qubit (a two-level quantum system). However, before we can delve deeper into the true nature of the Bloch Sphere, we need to understand the concept of geometric representation.
+
+## II. Geometric Representations
+In really simple terms, a geometric representation translates abstract information into a spatial, visual format, making it easier to understand relationships, patterns, and structures. For example, we can represent real numbers on a number line, which is a one-dimensional geometric space. Similarly, we can represent complex numbers on a two-dimensional plane called the complex plane.
+
+![Complex to plane]({{image_path}}/Complex.svg){: .light }{: width="550" }
+![Complex to plane]({{image_path}}/ComplexDark.svg){: .dark }{: width="550" }
+
+> "Geometric representations translate abstract information into a spatial, visual format, making it easier to understand relationships, patterns, and structures."
 
 As the figure shows, we can take the general equation of a complex number defined below and plot them on a 2D plane. 
+ 
 $$
-  z = x + iy \in \mathbb{C} \;\; \forall x,y \in \mathbb{R}
+  z = x + iy \in \mathbb{C}  \forall x,y \in \mathbb{R}
 $$
 
-**The key idea is that every single unique assignment of $(x,y)$ corresponds to a unique point on the 2D plane**
+In the example, **the key idea is that every single unique assignment of $(x,y)$ corresponds to a unique point on the 2D plane**. More formally, a 
 
+<div class="definition">
+<b>Definition 2</b> (Geometric Representation). A geometric representation is mapping from some abstract data space $\mathcal{D}$ to a mathematical space $\mathcal{S}$. 
+</div>
+
+Where a [mathematical space](https://en.wikipedia.org/wiki/Space_(mathematics)) is a set with some added structure such as a metric or topology[^math_space]. A [vector space](https://en.wikipedia.org/wiki/Vector_space) is an example of a mathematical space where the elements of the set are vectors and the added structure is vector addition and scalar multiplication.
+
+**Why do we care?** This is important because, as stated earlier, the Bloch sphere is a specific type of '*space*' known as a [*'Projective*'](https://en.wikipedia.org/wiki/Complex_projective_space) space of all complex numbers $\mathbb{C}^2$. 
+
+## III. Projective Spaces
+A projective space aims to capture the idea of direction without magnitude. To better understand this idea let's define a new coordinate system in terms of $\theta,\lambda$, where $\theta$ is the angle from the 
+
+![Projective]({{image_path}}/Projective.svg){: .light }{: width="450" }
+![Projective]({{image_path}}/ProjectiveDark.svg){: .dark }{: width="450" }
+
+As we can see in the picture above, we can represent any point on the 2D plane in terms of a point on the unit circle defined by the angle $\theta$ and a scaling factor $\lambda$. **<u>Note that we only require half the unit circle</u>** - This is because all points in the 3rd and 4th quadrants can be represented by a point in the 1st and 2nd quadrants with a negative scaling factor. In this case, **The unit semi-circle is the projective space of all real numbers $\mathbb{R}^2$**.
+
+Formally, the semi-circle is termed the *real projective line* and is denoted as $\mathbb{RP}^1$. 
+
+<br>
 <hr>
 
-## *References*
-[^qubit]: https://www.ibm.com/think/topics/qubit
-[^wiki_bloch]: https://en.wikipedia.org/wiki/Bloch_sphere
+# References
+[^qubit]: [https://www.ibm.com/think/topics/qubit](https://www.ibm.com/think/topics/qubit)
+[^wiki_bloch]: [https://en.wikipedia.org/wiki/Bloch_sphere](https://en.wikipedia.org/wiki/Bloch_sphere)
+[^math_space]: [https://en.wikipedia.org/wiki/Space_(mathematics)](https://en.wikipedia.org/wiki/Space_(mathematics))
+[^bloch_video]: [https://www.youtube.com/watch?v=KEzmw6cKOlU](https://www.youtube.com/watch?v=KEzmw6cKOlU)
