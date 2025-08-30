@@ -1,0 +1,34 @@
+.article {
+  text-align: justify;
+}
+
+
+.definition {
+  font-family: 'Times New Roman', Times, serif;
+  margin-bottom: 0.5rem;
+  text-align: justify;
+  padding: 0.9rem;
+  font-style: italic;
+}
+
+.definition b{
+  font-weight: 600;
+  font-style: normal;
+}
+
+.article h2{
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 1.35em;
+  font-weight:600;
+  margin-bottom: 0.4rem;
+  margin-top: 1.5rem;
+  counter-reset: h3counter;
+}
+
+
+.article h3{
+  font-size: 1.1em;
+  font-weight: bolder;
+  margin-bottom: 0.2rem;
+  font-family: 'Times New Roman', Times, serif;
+}
