@@ -1,11 +1,17 @@
 .article {
   text-align: justify;
+
+  mjx-container{
+    margin-left: 0.25rem;
+    margin-right: 0.25rem;
+  }
 }
 
 
 .definition {
   font-family: 'Times New Roman', Times, serif;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.3rem;
+  margin-top: 0px;
   text-align: justify;
   padding: 0.9rem;
   font-style: italic;
@@ -21,8 +27,7 @@
   font-size: 1.35em;
   font-weight:600;
   margin-bottom: 0.4rem;
-  margin-top: 1.5rem;
-  counter-reset: h3counter;
+  margin-top: 1.8rem;
 }
 
 
