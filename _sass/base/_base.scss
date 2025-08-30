@@ -420,15 +420,19 @@ mjx-container {
 
   @include bp.lg {
     margin-left: v.$sidebar-width;
+    padding-left: 2rem;
+    padding-right: 2rem;
   }
 
   @include bp.xxxl {
     margin-left: v.$sidebar-width-large;
+    padding-left: 5rem;
+    padding-right: 8rem;
   }
 
   > .container {
     min-height: 100vh;
-    max-width: 2000px !important;
+    max-width: 3000px !important;
 
     @include bp.lte(bp.get(md)) {
       @include mx.max-w-100;
