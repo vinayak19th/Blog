@@ -428,6 +428,7 @@ mjx-container {
 
   > .container {
     min-height: 100vh;
+    max-width: 2000px !important;
 
     @include bp.lte(bp.get(md)) {
       @include mx.max-w-100;
