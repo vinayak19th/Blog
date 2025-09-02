@@ -63,6 +63,14 @@ As we can see in the picture above, we can represent any point on the 2D plane i
 
 Formally, the semi-circle is termed the *real projective line* and is denoted as $\mathbb{RP}^1$. 
 
+<h1>My Plotly Figure</h1>
+<div class="plotly-figure light">
+    {% include plotly/bloch/projective_circle.html %}
+</div>
+<div class="plotly-figure dark">
+    {% include plotly/bloch/projective_circle_dark.html %}
+</div>
+
 <br>
 <hr>
 
