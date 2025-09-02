@@ -56,20 +56,27 @@ Where a [mathematical space](https://en.wikipedia.org/wiki/Space_(mathematics)) 
 ## III. Projective Spaces
 A projective space aims to capture the idea of direction without magnitude. To better understand this idea let's define a new coordinate system in terms of $\theta,\lambda$, where $\theta$ is the angle from the 
 
-![Projective]({{image_path}}/Projective.svg){: .light }{: width="450" }
-![Projective]({{image_path}}/ProjectiveDark.svg){: .dark }{: width="450" }
+![Projective]({{image_path}}/Projective.svg){: .light }{: width="400" }
+![Projective]({{image_path}}/ProjectiveDark.svg){: .dark }{: width="400" }
 
-As we can see in the picture above, we can represent any point on the 2D plane in terms of a point on the unit circle defined by the angle $\theta$ and a scaling factor $\lambda$. **<u>Note that we only require half the unit circle</u>** - This is because all points in the 3rd and 4th quadrants can be represented by a point in the 1st and 2nd quadrants with a negative scaling factor. In this case, **The unit semi-circle is the projective space of all real numbers $\mathbb{R}^2$**.
+As we can see in the picture above, we can represent any point on the 2D plane in terms of a point on the unit circle defined by the angle $\theta$ and a scaling factor $\lambda$. Formally, the semi-circle is termed the *real projective line* and is denoted as $\mathbb{RP}^1$.
 
-Formally, the semi-circle is termed the *real projective line* and is denoted as $\mathbb{RP}^1$. 
+#### Real Projective Line
+The interactive plot below shows how we create the '*real projective line*' from the 2D plane. Try moving changing the angle of the '*rotating vector*' and see how it affects the '*projective shadow*' as well as the point on the real projective line or the '*Projected Vector*'.
 
-<h1>My Plotly Figure</h1>
 <div class="plotly-figure light">
     {% include plotly/bloch/projective_circle.html %}
 </div>
 <div class="plotly-figure dark">
     {% include plotly/bloch/projective_circle_dark.html %}
 </div>
+
+> Move the angle of the rotating vector and see how it affects the projected vector on the real projective line.
+{: .prompt-info }
+
+In this plot the coordinates on the real projective line $(p,\theta)$ represent the intercept point of $y=1$ and the angle of the rotating vector respectively. As evident from the figure, all points in $\mathbb{R}^2$ that are on the same ray from the origin (i.e. have the same angle $\theta$) map to the same point on the real projective line. However what may not be entire obvious is why we require
+
+ **<u>Note that we only require half the unit circle</u>** - This is because all points in the 3rd and 4th quadrants can be represented by a point in the 1st and 2nd quadrants with a negative scaling factor. In this case, **The unit semi-circle is the projective space of all real numbers $\mathbb{R}^2$**.
 
 <br>
 <hr>
