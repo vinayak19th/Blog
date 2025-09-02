@@ -12,7 +12,6 @@ comments: true
 
 {% assign parts = page.path | split: '/' %}
 {% assign image_path = site.post_image_path | append: '/' | append: parts[1] | append: '/' | append: parts[2] | append: '/' | append: "bloch" %}
-
 This article aims to provide a simplified and more intuitive explanation of the Bloch sphere assuming that the reader has a basic understanding of quantum computing such as what is a [qubit](https://www.ibm.com/think/topics/qubit)[^qubit], what are basis states and a basic understanding of high school geometry. The Bloch sphere at its core the projective space of all complex numbers $\mathbb{C}^2$ which is also the true state space of a single qubit. This is well explained in [this video by Gabriele Carcassi](https://www.youtube.com/watch?v=KEzmw6cKOlU)[^bloch_video]. I'll try to explain it in a more intuitive way in this blog post.
 
 ## I. Defining the Bloch Sphere
@@ -59,7 +58,21 @@ A projective space aims to capture the idea of direction without magnitude. To b
 ![Projective]({{image_path}}/Projective.svg){: .light }{: width="400" }
 ![Projective]({{image_path}}/ProjectiveDark.svg){: .dark }{: width="400" }
 
-As we can see in the picture above, we can represent any point on the 2D plane in terms of a point on the unit circle defined by the angle $\theta$ and a scaling factor $\lambda$. Formally, the semi-circle is termed the *real projective line* and is denoted as $\mathbb{RP}^1$.
+As we can see in the picture above, we can represent any vector in the 2D plane $\ket{v} \in \mathbb{R}^2$ in terms of a point on the unit circle defined by the angle $\theta$ and a scaling factor $\lambda$. Formally, the semi-circle is termed the *real projective line* and is denoted as $\mathbb{RP}^1$.
+
+$$
+  \ket{v} = \lambda(\cos\theta, \sin\theta) \;\; \forall \;\; \theta \in [0,\pi], \lambda \in \mathbb{R}
+$$
+
+This idea allows us to define the notion of a *projective ray* - 
+
+<div class="definition">
+<b>Definition 3</b> (Projective Ray). A projective ray is a line that extends infinitely in the positive and negative direction from the origin and is defined by the angle it makes with an axis. All points on the same ray are considered equivalent in projective space. They can be defined using the equation $\ket{r} = \lambda(\cos\theta, \sin\theta)$ where $\theta$ is the angle and $\lambda \in \{-\infty,\infty\}$.
+
+As the scaling factor is infinite, the only important factor is the angle $\theta$, thus we can represent a projective ray using just the angle $\theta$ as $\ket{r} = (\cos\theta, \sin\theta)$
+</div>
+
+The significance of a ray is that **all points on the same ray are considered equivalent in projective space** or more simply, we don't care about the magnitude of a vector in projective space.
 
 ### Real Projective Line
 The interactive plot below shows how we create the '*real projective line*' from the 2D plane. Try moving changing the angle of the '*rotating vector*' and see how it affects the '*projective shadow*' as well as the point on the real projective line or the '*Projected Vector*'.
@@ -77,7 +90,27 @@ The interactive plot below shows how we create the '*real projective line*' from
 In this plot the coordinates on the real projective line $(p,\theta)$ represent the intercept point of $y=1$ and the angle of the rotating vector respectively. As evident from the figure, all points in $\mathbb{R}^2$ that are on the same ray from the origin (i.e. have the same angle $\theta$) map to the same point on the real projective line. However what may not be entire obvious is why we require only the semi-circle and not the entire circle. Recall that every point in $\mathbb{R}^2$ can be represented as a point on the unit circle with a scaling factor $\lambda$. This means that all points in the 3rd and 4th quadrants can be represented by a point in the 1st and 2nd quadrants with a negative scaling factor. Thus, **we only require half the unit circle to represent all points in $\mathbb{R}^2$** Additionally, notice how after we complete a rotation from $0$ to $\pi$, the projected shadow starts to move in reverse, this is further evidence that the lower half of the semi-circle is not needed to describe the entire space.
 
 ## IV. Quantum States and Projective Spaces
-Quantum states comprise of unit vectors in $\mathbb{C}^2$. This can be summarized in the following expression $\ket{\psi} \in \mathbb{C}^2$. 
+Let us think about an arbitary vector ($\ket{v}$) in 2D Complex Hilbert Space ($\mathbb{C}^2$). We can also represent this vector in terms of its basis vectors $\ket{0}$ and $\ket{1}$ as follows:
+
+$$
+   \ket{v} = x\ket{0} + y \ket{1} \;\; \forall \;\; x,y \in \mathbb{C}
+$$
+
+We can apply the same logic as before and every possible $\ket{v}$ in terms of a point on the a unit circle in $\mathbb{C}^2$ and a scaling factor $\lambda$ as follows:
+
+$$
+  \ket{v} = \lambda(\alpha\ket{0} + \beta \ket{1}) \;\; \forall \;\; \alpha,\beta,\lambda \in \mathbb{C} \;\; and \;\; |\alpha|^2 + |\beta|^2 = 1
+$$
+
+Additionally, any complex number can be represented in terms of its polar coordinates $re^{i\phi}$ where $r\in\mathbb{R}$ and $\phi \in [0,\pi]$. While not immediately obvious, this polar representation is just an extension of the projective space idea we discussed earlier. Therefore, 
+
+$$
+  \ket{v} = r\cdot e^{i\phi}(\alpha\ket{0} + \beta \ket{1}) = r \cdot \ket{\Phi}
+$$
+
+where, $r\in\mathbb{R}$, $\alpha,\beta \in \mathbb{C}$ and $\phi \in [0,\pi]$. What we have defined here is a point on a unit circle $\ket{\Phi} \in \mathbb{C}^2$ and a phase factor $e^{i\phi}$ of unit norm.
+
+
 
 <br>
 <hr>
