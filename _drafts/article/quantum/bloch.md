@@ -74,9 +74,9 @@ The interactive plot below shows how we create the '*real projective line*' from
 > Move the angle of the rotating vector and see how it affects the projected vector on the real projective line.
 {: .prompt-info }
 
-In this plot the coordinates on the real projective line $(p,\theta)$ represent the intercept point of $y=1$ and the angle of the rotating vector respectively. As evident from the figure, all points in $\mathbb{R}^2$ that are on the same ray from the origin (i.e. have the same angle $\theta$) map to the same point on the real projective line. However what may not be entire obvious is why we require
+In this plot the coordinates on the real projective line $(p,\theta)$ represent the intercept point of $y=1$ and the angle of the rotating vector respectively. As evident from the figure, all points in $\mathbb{R}^2$ that are on the same ray from the origin (i.e. have the same angle $\theta$) map to the same point on the real projective line. However what may not be entire obvious is why we require only the semi-circle and not the entire circle. Recall that every point in $\mathbb{R}^2$ can be represented as a point on the unit circle with a scaling factor $\lambda$. This means that all points in the 3rd and 4th quadrants can be represented by a point in the 1st and 2nd quadrants with a negative scaling factor. Thus, **we only require half the unit circle to represent all points in $\mathbb{R}^2$**.
 
- **<u>Note that we only require half the unit circle</u>** - This is because all points in the 3rd and 4th quadrants can be represented by a point in the 1st and 2nd quadrants with a negative scaling factor. In this case, **The unit semi-circle is the projective space of all real numbers $\mathbb{R}^2$**.
+Additionally, notice how after we complete a rotation from $0$ to $\pi$, the projected shadow 
 
 <br>
 <hr>
