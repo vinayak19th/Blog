@@ -1,0 +1,14 @@
+.plotly-figure {
+    width: inherit;
+    max-width: inherit; /* Optional: Sets a max width for large screens */
+    align-self: center;
+}
+
+.plot-container svg{
+  background: #ffffff00;
+  color: var(--text-color);
+}
+
+.modebar-container {
+            display: none; /* Example: hide Plotly's default modebar */
+        }
