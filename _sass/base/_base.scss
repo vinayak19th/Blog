@@ -420,14 +420,14 @@ mjx-container {
 
   @include bp.lg {
     margin-left: v.$sidebar-width;
-    padding-left: 2rem;
+    padding-left: 1rem;
     padding-right: 2rem;
   }
 
   @include bp.xxxl {
     margin-left: v.$sidebar-width-large;
-    padding-left: 5rem;
-    padding-right: 8rem;
+    padding-left: 3rem;
+    padding-right: 5rem;
   }
 
   > .container {
