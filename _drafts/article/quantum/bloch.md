@@ -42,7 +42,7 @@ $$
   z = x + iy \in \mathbb{C}  \forall x,y \in \mathbb{R}
 $$
 
-In the example, **the key idea is that every single unique assignment of $(x,y)$ corresponds to a unique point on the 2D plane**. More formally, a 
+In the example, **the key idea is that every single unique assignment of $(x,y)$ corresponds to a unique point on the 2D plane**. More formally, we can define a geometric representation as follows:
 
 <div class="definition">
 <b>Definition 2</b> (Geometric Representation). A geometric representation is mapping from some abstract data space $\mathcal{D}$ to a mathematical space $\mathcal{S}$. 
@@ -53,7 +53,7 @@ Where a [mathematical space](https://en.wikipedia.org/wiki/Space_(mathematics)) 
 **Why do we care?** This is important because, as stated earlier, the Bloch sphere is a specific type of '*space*' known as a [*'Projective*'](https://en.wikipedia.org/wiki/Complex_projective_space) space of all complex numbers $\mathbb{C}^2$. 
 
 ## III. Projective Spaces
-A projective space aims to capture the idea of direction without magnitude. To better understand this idea let's define a new coordinate system in terms of $\theta,\lambda$, where $\theta$ is the angle from the 
+A projective space aims to capture the idea of direction without magnitude. To better understand this idea let's define a new coordinate system in terms of $\theta,\lambda$, where $\theta$ is the angle between the vector and teh $y$-axis and $\lambda$ is a scaling factor.
 
 ![Projective]({{image_path}}/Projective.svg){: .light }{: width="400" }
 ![Projective]({{image_path}}/ProjectiveDark.svg){: .dark }{: width="400" }
@@ -67,12 +67,10 @@ $$
 This idea allows us to define the notion of a *projective ray* - 
 
 <div class="definition">
-<b>Definition 3</b> (Projective Ray). A projective ray is a line that extends infinitely in the positive and negative direction from the origin and is defined by the angle it makes with an axis. All points on the same ray are considered equivalent in projective space. They can be defined using the equation $\ket{r} = \lambda(\cos\theta, \sin\theta)$ where $\theta$ is the angle and $\lambda \in \{-\infty,\infty\}$.
-
-As the scaling factor is infinite, the only important factor is the angle $\theta$, thus we can represent a projective ray using just the angle $\theta$ as $\ket{r} = (\cos\theta, \sin\theta)$
+<b>Definition 3</b> (Projective Ray). A projective ray is a line that starts at the origin, passes through some point in the 2D plane, and extends infinitely in that direction. It can be defined by the angle it makes with an axis. All points on the same ray are considered equivalent in projective space. They can be defined using the equation $\ket{r} = [cos\theta, \sin\theta]^T$ where $\theta$ is the angle the ray makes with the $y$-axis. 
 </div>
 
-The significance of a ray is that **all points on the same ray are considered equivalent in projective space** or more simply, we don't care about the magnitude of a vector in projective space.
+Any point in the 2D plane can be represented as a point on the unit circle that lies intersects with a given ray and a scaling factor $\lambda$ - $\ket{v} = \lambda \ket{r}$. The significance of a ray is that **all points on the same ray are considered equivalent in projective space** or more simply, we don't care about the magnitude of a vector in projective space.
 
 ### Real Projective Line
 The interactive plot below shows how we create the '*real projective line*' from the 2D plane. Try moving changing the angle of the '*rotating vector*' and see how it affects the '*projective shadow*' as well as the point on the real projective line or the '*Projected Vector*'.
@@ -87,7 +85,13 @@ The interactive plot below shows how we create the '*real projective line*' from
 > Move the angle of the rotating vector and see how it affects the projected vector on the real projective line.
 {: .prompt-info }
 
-In this plot the coordinates on the real projective line $(p,\theta)$ represent the intercept point of $y=1$ and the angle of the rotating vector respectively. As evident from the figure, all points in $\mathbb{R}^2$ that are on the same ray from the origin (i.e. have the same angle $\theta$) map to the same point on the real projective line. However what may not be entire obvious is why we require only the semi-circle and not the entire circle. Recall that every point in $\mathbb{R}^2$ can be represented as a point on the unit circle with a scaling factor $\lambda$. This means that all points in the 3rd and 4th quadrants can be represented by a point in the 1st and 2nd quadrants with a negative scaling factor. Thus, **we only require half the unit circle to represent all points in $\mathbb{R}^2$** Additionally, notice how after we complete a rotation from $0$ to $\pi$, the projected shadow starts to move in reverse, this is further evidence that the lower half of the semi-circle is not needed to describe the entire space.
+In this plot the coordinates on the real projective line $(p,\theta)$ represent the intercept point of $y=1$ and the angle of the rotating vector respectively. Here are some key takeaways from the plot to better understand the concept of projective spaces:
+
+1. The scaling factor $\lambda \in \{-1,1\}$ represents if we are reflecting the vector across the origin or not, i.e when $\lambda = -1$ all points from the 3rd quadrant are reflected to the 1st quadrant and all points from the 4th quadrant are reflected to the 2nd quadrant. 
+2. As the vector rotates, the project shadow traces its path on the $x$-axis. However, the path is traced for semi-circle occupying the 1st and 2nd quadrants only, therefore, when the angle is greater than $\frac{\pi}{2}$, $\lambda$ becomes negative and the angles start from $-\frac{\pi}{2}$ to $0$, which is the other side of the $x$-axis.
+3. As the angles go past $\frac{\pi}{2}$, the Projected vector on the real projective line continues to move in the same direction, this is because the points for $-\frac{\pi}{2}$ and $\frac{\pi}{2}$ are equivalent in projective space. Therefore, while they are opposite ends of the line for the projected shadow, they are the same point on the real projective line.
+
+We can use these observations to conclude that all points in $\mathbb{R}^2$ that are on the same ray from the origin (i.e. have the same angle $\theta$) map to the same point on the real projective line. Additionally, since the scaling factor $\lambda$ can be either positive or negative, we can represent points in all four quadrants of $\mathbb{R}^2$ using just the angles from $0$ to $\pi$ or half the unit circle.
 
 ## IV. Quantum States and Projective Spaces
 Let us think about an arbitary vector ($\ket{v}$) in 2D Complex Hilbert Space ($\mathbb{C}^2$). We can also represent this vector in terms of its basis vectors $\ket{0}$ and $\ket{1}$ as follows:
@@ -108,8 +112,24 @@ $$
   \ket{v} = r\cdot e^{i\phi}(\alpha\ket{0} + \beta \ket{1}) = r \cdot \ket{\Phi}
 $$
 
-where, $r\in\mathbb{R}$, $\alpha,\beta \in \mathbb{C}$ and $\phi \in [0,\pi]$. What we have defined here is a point on a unit circle $\ket{\Phi} \in \mathbb{C}^2$ and a phase factor $e^{i\phi}$ of unit norm.
+where, $r\in\mathbb{R}$, $\alpha,\beta \in \mathbb{C}$ and $\phi \in [0,\pi]$. What we have defined here is a point on a unit circle $\ket{\Phi} \in \mathbb{C}^2$ and a phase factor $e^{i\phi}$ of unit norm. As you might've noticed that this iss **exactly the same as the general equation of a valid quantum state**. We can use this information to define a quantum state geometrically as follows:
 
+<div class="definition">
+<b>Definition 4</b> (Quantum State). A valid quantum state represents a ray from the origin to any point in the complex Hilbert space $\mathbb{C}^2$. They can be mathematically represented as $\ket{\Phi} = e^{\phi}(\alpha\ket{0} + \beta \ket{1})$ where $\alpha,\beta \in \mathbb{C}$ and $|\alpha|^2 + |\beta|^2 = 1$.
+</div>  
+
+### Valid vs Measurable States - A Geometric Perspective
+If we define a valid qubit state as a ray, what can be say about the difference between a valid state and a measurable state? A measurable state is simply a valid state which does not have a global phase factor. Therefore, **Every measurable state is a valid state, but every valid state is not a measurable state**. This is due to the magnitude operator $|.|^2$ which removes the global phase factor when we measure a quantum state.
+
+As we saw earlier, all points in the 1st and 2nd quadrants differ from points in the 3rd and 4th quadrants by a global phase factor of $e^{i\pi} = -1$. Therefore, we can say that **The set of all measureable states forms the projective space of $\mathbb{C}^2$**. 
+
+<div class="definition">
+<b>Definition 5</b> (Measurable Quantum State). The projective vector of a valid quantum state $\ket{\Psi}$ is its measurable state($\ket{\psi}$). It can be mathematically represented as  $\ket{\psi} = \alpha\ket{0} + \beta \ket{1})$ where $\alpha,\beta \in \mathbb{C}$ and $|\alpha|^2 + |\beta|^2 = 1$ and $\alpha,\beta$ do not share a global phase factor.
+</div>  
+
+Put another way - **The projective space of $\mathbb{C}^2$ forms the set of all measurable quantum state**. As we read further, what we will find is the **The Bloch Sphere is the Project Space of $\mathbb{C}^2$ ($\mathbb{CP}^1$)**. 
+
+## V. Bloch Sphere as $\mathbb{CP}^1$
 
 
 <br>
