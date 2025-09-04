@@ -349,7 +349,7 @@ header {
   height: v.$back2top-size;
   border-radius: 50%;
   border: 1px solid var(--btn-backtotop-border-color);
-  transition: all 0.2s ease-in-out;
+  transition: opacity 0.5s ease-in-out, transform 0.2s ease-out;
 
   @extend %btn-color;
 
@@ -367,7 +367,7 @@ header {
 
   &.invisible {
     top: -#{v.$topbar-height};
-    transition: none;
+    transition: opacity 0.5s ease-in-out, transform 0.2s ease-out;
   }
 
   &:hover {
@@ -381,37 +381,6 @@ header {
     bottom: 2px;
   }
 }
-
-// #toc-bar {
-//   position: -webkit-sticky;
-//   position: sticky;
-//   top: 0;
-//   z-index: 1;
-//   margin: 0 -1rem;
-//   height: v.$topbar-height;
-//   background: var(--main-bg);
-//   border-bottom: 1px solid var(--main-border-color);
-//   transition: all 0.2s ease-in-out;
-
-//   @extend %btn-color;
-
-//   @include bp.xl {
-//     display: none !important;
-//   }
-
-//   .label {
-//     @extend %heading;
-
-//     margin-left: 0.375rem;
-//     padding: 0 0.75rem;
-//     color: inherit;
-//   }
-
-//   &.invisible {
-//     top: -#{v.$topbar-height};
-//     transition: none;
-//   }
-// }
 
 #toc-solo-trigger {
   color: var(--text-muted-color);
