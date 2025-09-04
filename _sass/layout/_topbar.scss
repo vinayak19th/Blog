@@ -7,6 +7,7 @@
   height: v.$topbar-height;
   background-color: var(--topbar-bg);
   margin-top: 0.5rem;
+  padding-bottom: 0.3rem;
 
   @include bp.lt(bp.get(lg)) {
     @include mx.slide(top 0.2s ease);
@@ -21,6 +22,10 @@
 
 #topbar {
   @extend %btn-color;
+  padding-top: 0.2rem;
+  padding-bottom: 0.2rem;
+  border-bottom: 1.5px solid var(--sidebar-border-color);
+  border-radius: 100px;
 
   #breadcrumb {
     font-size: 1rem;
