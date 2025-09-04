@@ -10,7 +10,7 @@ math: true
 comments: true
 ---
 
-## Welcome to My Quantum Machine Learning Journey 🚀✨
+## Welcome to my Quantum Machine Learning Journey 🚀✨
 
 Hello, and welcome to my personal blog! 🎉
 
