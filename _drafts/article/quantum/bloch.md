@@ -137,11 +137,12 @@ Put another way - **The projective space of $\mathbb{C}^2$ forms the set of all 
 ## V. Bloch Sphere as $\mathbb{CP}^1$
 In order to better understand the Bloch Sphere we need to first understand the projective space of $\mathbb{C}^2$ which is denoted as $\mathbb{CP}^1$. A good first step is understanding the structure of $\mathbb{C}^2$. As you might've learned in high school, any complex number $c \in \mathbb{C}$ can be represented as a point in a 2D plane. Therefore, $\mathbb{C}^2$ can be <u>represented as a 4D space</u> where each complex dimension is represented as a 2D plane. **This makes it very hard to visualize**. However, the projective space of $\mathbb{C}^2$ or $\mathbb{CP}^1$ can be represented in 3D dimensions and, as mentioned earlier, is the Bloch Sphere.
 
-While it might be diffcult to grasp the transformation from $\mathbb{C}^2$ to $\mathbb{CP}^1$, we can start by understanding what the projective space of just the **Real Axes** of a single qubit looks like. This is shown in the Figure below:
+While it might be diffcult to grasp the transformation from $\mathbb{C}^2$ to $\mathbb{CP}^1$, we can start by understanding what the projective space of just the **Real Axes** of a single qubit looks like. Recall that a single qubit is defined by $\ket{\psi} = \alpha \ket{0} + \beta \ket{1}$. If we only plot the real axes we can define a coordinate system such that $\ket{0}$**** This is shown in the Figure below:
 
 ![Projective]({{image_path}}/C2.svg){: .light }{: width="700" }
 ![Projective]({{image_path}}/C2Dark.svg){: .dark }{: width="700" }
-_**Fig 4.** Projective Space of the Real Axes of a single qubit_ 
+_**Fig 4.** Projective Space of the `Real Axes` of a single qubit_ 
+
 
 <br>
 <hr>
