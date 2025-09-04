@@ -55,16 +55,9 @@ script_includes:
   </header>
 
   {% if enable_toc %}
-    {%- comment -%} <div id="toc-bar" class="d-flex align-items-center justify-content-between invisible">
-      <span class="label text-truncate">{{ page.title }}</span>
-      <button type="button" class="toc-trigger btn me-1">
-        <i class="fa-solid fa-list-ul fa-fw"></i>
-      </button>
-    </div> {%- endcomment -%}
-
-        <button id="toc-bar" type="button" class="invisible btn btn-lg btn-box-shadow toc-trigger">
-          <i class="fa-solid fa-list-ul"></i>
-        </button>
+    <button id="toc-bar" type="button" class="invisible btn btn-lg btn-box-shadow toc-trigger">
+      <i class="fa-solid fa-list-ul"></i>
+    </button>
 
     <button id="toc-solo-trigger" type="button" class="toc-trigger btn btn-outline-secondary btn-sm">
       <span class="label ps-2 pe-1">{{- site.data.locales[lang].panel.toc -}}</span>
