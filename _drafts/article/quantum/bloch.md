@@ -33,6 +33,7 @@ In really simple terms, a geometric representation translates abstract informati
 
 ![Complex to plane]({{image_path}}/Complex.svg){: .light }{: width="550" }
 ![Complex to plane]({{image_path}}/ComplexDark.svg){: .dark }{: width="550" }
+_**Fig 1.** Example of Geometric Representations for the set of all Complex Numbers_ 
 
 > "Geometric representations translate abstract information into a spatial, visual format, making it easier to understand relationships, patterns, and structures."
 
@@ -57,6 +58,7 @@ A projective space aims to capture the idea of direction without magnitude. To b
 
 ![Projective]({{image_path}}/Projective.svg){: .light }{: width="400" }
 ![Projective]({{image_path}}/ProjectiveDark.svg){: .dark }{: width="400" }
+_**Fig 2.** Vectors as a scaled unit vector_ 
 
 As we can see in the picture above, we can represent any vector in the 2D plane $\ket{v} \in \mathbb{R}^2$ in terms of a point on the unit circle defined by the angle $\theta$ and a scaling factor $\lambda$. Formally, the semi-circle is termed the *real projective line* and is denoted as $\mathbb{RP}^1$.
 
@@ -75,12 +77,15 @@ Any point in the 2D plane can be represented as a point on the unit circle that 
 ### Real Projective Line
 The interactive plot below shows how we create the '*real projective line*' from the 2D plane. Try moving changing the angle of the '*rotating vector*' and see how it affects the '*projective shadow*' as well as the point on the real projective line or the '*Projected Vector*'.
 
-<div class="plotly-figure light">
-    {% include plotly/bloch/projective_circle.html %}
-</div>
-<div class="plotly-figure dark">
-    {% include plotly/bloch/projective_circle_dark.html %}
-</div>
+<center>
+   <div class="plotly-figure light">
+       {% include plotly/bloch/projective_circle.html %}
+   </div>
+   <div class="plotly-figure dark">
+       {% include plotly/bloch/projective_circle_dark.html %}
+   </div>
+  <i style="margin-top:0.4rem"><b>Fig 3.</b> Interactive Real Projective Space</i> 
+</center>
 
 > Move the angle of the rotating vector and see how it affects the projected vector on the real projective line.
 {: .prompt-info }
@@ -130,13 +135,18 @@ As we saw earlier, all points in the 1st and 2nd quadrants differ from points in
 Put another way - **The projective space of $\mathbb{C}^2$ forms the set of all measurable quantum state**. As we read further, what we will find is the **The Bloch Sphere is the Project Space of $\mathbb{C}^2$ ($\mathbb{CP}^1$)**. 
 
 ## V. Bloch Sphere as $\mathbb{CP}^1$
+In order to better understand the Bloch Sphere we need to first understand the projective space of $\mathbb{C}^2$ which is denoted as $\mathbb{CP}^1$. A good first step is understanding the structure of $\mathbb{C}^2$. As you might've learned in high school, any complex number $c \in \mathbb{C}$ can be represented as a point in a 2D plane. Therefore, $\mathbb{C}^2$ can be <u>represented as a 4D space</u> where each complex dimension is represented as a 2D plane. **This makes it very hard to visualize**. However, the projective space of $\mathbb{C}^2$ or $\mathbb{CP}^1$ can be represented in 3D dimensions and, as mentioned earlier, is the Bloch Sphere.
 
+While it might be diffcult to grasp the transformation from $\mathbb{C}^2$ to $\mathbb{CP}^1$, we can start by understanding what the projective space of just the **Real Axes** of a single qubit looks like. This is shown in the Figure below:
+
+![Projective]({{image_path}}/C2.svg){: .light }{: width="700" }
+![Projective]({{image_path}}/C2Dark.svg){: .dark }{: width="700" }
+_**Fig 4.** Projective Space of the Real Axes of a single qubit_ 
 
 <br>
 <hr>
 
 # References
-[^qubit]: [https://www.ibm.com/think/topics/qubit](https://www.ibm.com/think/topics/qubit)
 [^wiki_bloch]: [https://en.wikipedia.org/wiki/Bloch_sphere](https://en.wikipedia.org/wiki/Bloch_sphere)
 [^math_space]: [https://en.wikipedia.org/wiki/Space_(mathematics)](https://en.wikipedia.org/wiki/Space_(mathematics))
 [^bloch_video]: [https://www.youtube.com/watch?v=KEzmw6cKOlU](https://www.youtube.com/watch?v=KEzmw6cKOlU)
