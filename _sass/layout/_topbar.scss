@@ -22,7 +22,7 @@
 #topbar {
   @extend %btn-color;
 
-  padding-top: 0.5rem;
+  padding-top: 0.1rem;
   padding-bottom: 0.2rem;
   border-bottom: 2px solid var(--sidebar-border-color);
   border-radius: 100px;
@@ -60,6 +60,9 @@
 
   @include bp.lte(bp.get(md)) {
     @include mx.max-w-100;
+
+    border-radius: 0px;
+    border-bottom: 1px solid var(--sidebar-border-color);
   }
 
   @include bp.lt(bp.get(lg)) {
