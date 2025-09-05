@@ -1,5 +1,6 @@
 ---
 title: Bloch Sphere Demystified - Hitchhikers Guide to Quantum States
+short_title: Bloch Sphere Demystified
 description: A simplified explanation of the Bloch sphere representation of quantum states
 author: Vinayak
 date: 2025-08-16 11:33:00 +0800
@@ -12,7 +13,8 @@ comments: true
 
 {% assign parts = page.path | split: '/' %}
 {% assign image_path = site.post_image_path | append: '/' | append: parts[1] | append: '/' | append: parts[2] | append: '/' | append: "bloch" %}
-This article aims to provide a simplified and more intuitive explanation of the Bloch sphere assuming that the reader has a basic understanding of quantum computing such as what is a [qubit](https://www.ibm.com/think/topics/qubit)[^qubit], what are basis states and a basic understanding of high school geometry. The Bloch sphere at its core the projective space of all complex numbers $\mathbb{C}^2$ which is also the true state space of a single qubit. This is well explained in [this video by Gabriele Carcassi](https://www.youtube.com/watch?v=KEzmw6cKOlU)[^bloch_video]. I'll try to explain it in a more intuitive way in this blog post.
+
+This article aims to provide a simplified and more intuitive explanation of the Bloch sphere assuming that the reader has a basic understanding of quantum computing such as what is a [qubit](https://www.ibm.com/think/topics/qubit), what are basis states and a basic understanding of high school geometry. The Bloch sphere at its core the projective space of all complex numbers $\mathbb{C}^2$ which is also the true state space of a single qubit. This is well explained in [this video by Gabriele Carcassi](https://www.youtube.com/watch?v=KEzmw6cKOlU)[^bloch_video]. I'll try to explain it in a more intuitive way in this blog post.
 
 ## I. Defining the Bloch Sphere
 According to [wikipedia](https://en.wikipedia.org/wiki/Bloch_sphere)[^wiki_bloch], we can define the bloch sphere as follows:
@@ -135,14 +137,44 @@ As we saw earlier, all points in the 1st and 2nd quadrants differ from points in
 Put another way - **The projective space of $\mathbb{C}^2$ forms the set of all measurable quantum state**. As we read further, what we will find is the **The Bloch Sphere is the Project Space of $\mathbb{C}^2$ ($\mathbb{CP}^1$)**. 
 
 ## V. Bloch Sphere as $\mathbb{CP}^1$
+The Bloch Sphere is a unit sphere where the computational basis ($\ket{0}$ and $\ket{1}$) are represented on the poles of the $z$-axis, the sign basis ($\ket{+}$ and $\ket{-}$) are represented on the poles of the $x$-axis and the imaginary basis ($\ket{+i}$ and $\ket{-i}$) are represented on the poles of the $y$-axis. This is shown in figure 4 below:
+
+![Projective]({{image_path}}/Bloch.svg){: .light }{: width="300" }
+![Projective]({{image_path}}/BlochDark.svg){: .dark }{: width="300" }
+_**Fig 4.** Bloch Sphere with all 3 axes_ 
+
 In order to better understand the Bloch Sphere we need to first understand the projective space of $\mathbb{C}^2$ which is denoted as $\mathbb{CP}^1$. A good first step is understanding the structure of $\mathbb{C}^2$. As you might've learned in high school, any complex number $c \in \mathbb{C}$ can be represented as a point in a 2D plane. Therefore, $\mathbb{C}^2$ can be <u>represented as a 4D space</u> where each complex dimension is represented as a 2D plane. **This makes it very hard to visualize**. However, the projective space of $\mathbb{C}^2$ or $\mathbb{CP}^1$ can be represented in 3D dimensions and, as mentioned earlier, is the Bloch Sphere.
 
-While it might be diffcult to grasp the transformation from $\mathbb{C}^2$ to $\mathbb{CP}^1$, we can start by understanding what the projective space of just the **Real Axes** of a single qubit looks like. Recall that a single qubit is defined by $\ket{\psi} = \alpha \ket{0} + \beta \ket{1}$. If we only plot the real axes we can define a coordinate system such that $\ket{0}$**** This is shown in the Figure below:
+### Real and Imaginary Axes of a Single Qubit
 
-![Projective]({{image_path}}/C2.svg){: .light }{: width="700" }
-![Projective]({{image_path}}/C2Dark.svg){: .dark }{: width="700" }
-_**Fig 4.** Projective Space of the `Real Axes` of a single qubit_ 
+While it might be diffcult to grasp the transformation from $\mathbb{C}^2$ to $\mathbb{CP}^1$, we can start by understanding what the projective space of just the **Real Axes** of a single qubit looks like. Recall that a single qubit is defined by $\ket{\psi} = \alpha \ket{0} + \beta \ket{1}$. If we only plot the real axes we can define a coordinate system such that $\ket{0}$ and $\ket{1}$ are the x and y axis unit vectors. The projective line ($Re(\mathbb{C})\mathbb{P}$) for the real axes ($Re(\mathbb{C}^2)$) is formed using the same approach as explained in Section III. However, we consider the 1st and 4th quadrants as our primary space. This is completely valid since the choice of which half of the unit is entirely arbitrary. From there we can define the states $\ket{+}$ and $\ket{-}$ as the $\ket{0}$ vector rotated by $\pm \frac{\pi}{4}$ respectively. We can easily verify this to be the case by examing their state vectors. This is shown in the Figure below:
 
+![Projective]({{image_path}}/C2.svg){: .light }{: width="600" }
+![Projective]({{image_path}}/C2Dark.svg){: .dark }{: width="600" }
+_**Fig 5.** Projective Space of the `Real Axes` of a single qubit_ 
+
+<u>What figure 5 shows is that on the projective line</u> - 
+1. The $\ket{0}$ and $\ket{1}$ states occupy the poles of the same axis - we can label this the $z$-axis.
+2. The $\ket{+}$ and $\ket{-}$ states occupy the poles of the axis perpendicular to the $z$-axis - we can label this the $x$-axis. 
+
+Now, we can repeat the same process for the imaginary axes ($Im(\mathbb{C}^2)$) of a single qubit. In this case, we can define the $\ket{+i}$ and $\ket{-i}$ states as the $\ket{0}$ vector rotated by $\pm \frac{\pi}{4}$ respectively in the imaginary plane. This is shown in the figure below:
+
+![Projective]({{image_path}}/C2_IM.svg){: .light }{: width="600" }
+![Projective]({{image_path}}/C2_IMDark.svg){: .dark }{: width="600" }
+_**Fig 6.** Projective Space of the `Imaginary Axes` of a single qubit_ 
+
+<u>What figure 6 shows is that on the projective line</u> - 
+1. The $\ket{0}$ and $\ket{1}$ states occupy the poles of the same axis - we can label this the $z$-axis.
+2. The $\ket{i}$ and $\ket{-i}$ states occupy the poles of the axis perpendicular to the $z$-axis - we can label this the $y$-axis. 
+
+# IMPORTANT WRITE ABOUT THE X-Y PLANE
+
+### Combining Real and Imaginary Axes
+Now that we have a good understanding of the projective space of the real and imaginary axes of a single qubit, we can combine them to form the full projective space. What is important to remember is that **the imaginary axes are perpendicular to the real axes**. Therefore the projective lines, which form planes, are also perpendicular to each other. We can call these planes - **Projective Planes**. The projective space of $\mathbb{C}^2$ or $\mathbb{CP}^1$ is formed by combining these 3 projective planes. This is shown in figure 7 below, however, the $y-z$ plane is not shown for clarity.
+
+![Projective]({{image_path}}/Bloch-planes.svg){: .light }{: width="400" }
+![Projective]({{image_path}}/Bloch-planesDark.svg){: .dark }{: width="400" }
+_**Fig 7.** Projective Planes combine to form Bloch Sphere_ 
 
 <br>
 <hr>
