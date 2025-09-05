@@ -49,6 +49,7 @@
       <i class="fas fa-bars fa-fw"></i>
     </button>
 
+    {%- comment -%}
     <div id="topbar-title">
       {% if page.layout == 'home' %} {{- site.data.locales[include.lang].title |
       default: site.title -}} {% elsif page.collection == 'tabs' or page.layout
@@ -57,6 +58,11 @@
       default: page.title -}} {% else %} {{-
       site.data.locales[include.lang].layout[page.layout] | default: page.layout
       | capitalize -}} {% endif %}
+    </div>
+    {%- endcomment -%}
+    <div id="topbar-title">
+      {% if page.short_title %} {{ page.short_title }} {% else %} {{ page.title
+      }} {% endif %}
     </div>
     {% comment %} Container for buttons {% endcomment %}
     <div class="d-flex">
