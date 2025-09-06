@@ -154,10 +154,10 @@ While it might be diffcult to grasp the transformation from $\mathbb{C}^2$ to $\
 _**Fig 5.** Projective Space of the `Real Axes` of a single qubit_ 
 
 <u>What figure 5 shows is that on the projective line</u> - 
-1. The $\ket{0}$ and $\ket{1}$ states occupy the poles of the same axis - we can label this the $z$-axis.
+1. The $\ket{0}$ and $i\ket{1}$ states occupy the poles of the same axis - we can label this the $z$-axis.
 2. The $\ket{+}$ and $\ket{-}$ states occupy the poles of the axis perpendicular to the $z$-axis - we can label this the $x$-axis. 
 
-Now, we can repeat the same process for the imaginary axes ($Im(\mathbb{C}^2)$) of a single qubit. In this case, we can define the $\ket{+i}$ and $\ket{-i}$ states as the $\ket{0}$ vector rotated by $\pm \frac{\pi}{4}$ respectively in the imaginary plane. This is shown in the figure below:
+Now, we can repeat the same process for the imaginary axis for $\ket{1}$, which is $i\ket{1}$, and $ket{0}$ of a single qubit. We call this ($Im(\mathbb{C}^2)$). In this case, we can define the $\ket{+i}$ and $\ket{-i}$ states as the $\ket{0}$ vector rotated by $\pm \frac{\pi}{4}$ respectively in the imaginary plane. This is shown in the figure below:
 
 ![Projective]({{image_path}}/C2_IM.svg){: .light }{: width="600" }
 ![Projective]({{image_path}}/C2_IMDark.svg){: .dark }{: width="600" }
