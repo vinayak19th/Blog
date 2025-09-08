@@ -143,17 +143,34 @@ The Bloch Sphere is a unit sphere where the computational basis ($\ket{0}$ and $
 ![Projective]({{image_path}}/BlochDark.svg){: .dark }{: width="300" }
 _**Fig 4.** Bloch Sphere with all 3 axes_ 
 
-In order to better understand the Bloch Sphere we need to first understand the projective space of $\mathbb{C}^2$ which is denoted as $\mathbb{CP}^1$. A good first step is understanding the structure of $\mathbb{C}^2$. As you might've learned in high school, any complex number $c \in \mathbb{C}$ can be represented as a point in a 2D plane. Therefore, $\mathbb{C}^2$ can be <u>represented as a 4D space</u> where each complex dimension is represented as a 2D plane. **This makes it very hard to visualize**. However, the projective space of $\mathbb{C}^2$ or $\mathbb{CP}^1$ can be represented in 3D dimensions and, as mentioned earlier, is the Bloch Sphere.
+In order to better understand the Bloch Sphere we need to first understand the projective space of $\mathbb{C}^2$ which is denoted as $\mathbb{CP}^1$. A good first step is understanding the structure of $\mathbb{C}^2$. As you might've learned in high school, any complex number $c \in \mathbb{C}$ can be represented as a point in a 2D plane. Therefore, $\mathbb{C}^2$ can be <u>represented as a 4D real space</u> where each complex dimension is represented as a 2D plane. **This makes it very hard to visualize**. 
 
-### Real and Imaginary Axes of a Single Qubit
+### Projective Space of Measurable States
 
-While it might be diffcult to grasp the transformation from $\mathbb{C}^2$ to $\mathbb{CP}^1$, we can start by understanding what the projective space of just the **Real Axes** of a single qubit looks like. Recall that a single qubit is defined by $\ket{\psi} = \alpha \ket{0} + \beta \ket{1}$. If we only plot the real axes we can define a coordinate system such that $\ket{0}$ and $\ket{1}$ are the x and y axis unit vectors. The projective line ($Re(\mathbb{C})\mathbb{P}$) for the real axes ($Re(\mathbb{C}^2)$) is formed using the same approach as explained in Section III. However, we consider the 1st and 4th quadrants as our primary space. This is completely valid since the choice of which half of the unit is entirely arbitrary. From there we can define the states $\ket{+}$ and $\ket{-}$ as the $\ket{0}$ vector rotated by $\pm \frac{\pi}{4}$ respectively. We can easily verify this to be the case by examing their state vectors. This is shown in the Figure below:
+While we cannot visualize the full 4D space of single qubit states, we can leverage the global phase property of measurable states to create a 3D space for all measureable states upto a global phase factor. The interactive plot below plots this 3D space where the *imaginary* axis of $\ket{0}$ is removed. Try moving the unit sphere it see how the $\ket{0}, \ket{1}, \ket{+}, \ket{-}, \ket{+i}, \ket{-i}$ states all relate to each other.
+
+> Note: While not plotted for clarity, the $\ket{-i}$ and $\ket{-}$ also have an angle of $\pi/4$ between them. 
+
+ <center>
+   <div class="plotly-figure light">
+       {% include plotly/bloch/C2Space.html %}
+   </div>
+   <div class="plotly-figure dark">
+       {% include plotly/bloch/C2Space_dark.html %}
+   </div>
+  <i style="margin-top:0.4rem"><b>Fig 5.</b> Interactive C2 Space without the $i\ket{0}$ axis.</i> 
+</center>
+
+> Scrollwheel might not work if cursor is on the figure.
+{: .prompt-warning }
+
+of just the **Real Axes** of a single qubit looks like. Recall that a single qubit is defined by $\ket{\psi} = \alpha \ket{0} + \beta \ket{1}$. If we only plot the real axes we can define a coordinate system such that $\ket{0}$ and $\ket{1}$ are the x and y axis unit vectors. The projective line ($Re(\mathbb{C})\mathbb{P}$) for the real axes ($Re(\mathbb{C}^2)$) is formed using the same approach as explained in Section III. However, we consider the 1st and 4th quadrants as our primary space. This is completely valid since the choice of which half of the unit is entirely arbitrary. From there we can define the states $\ket{+}$ and $\ket{-}$ as the $\ket{0}$ vector rotated by $\pm \frac{\pi}{4}$ respectively. We can easily verify this to be the case by examing their state vectors. This is shown in the Figure below:
 
 ![Projective]({{image_path}}/C2.svg){: .light }{: width="600" }
 ![Projective]({{image_path}}/C2Dark.svg){: .dark }{: width="600" }
-_**Fig 5.** Projective Space of the `Real Axes` of a single qubit_ 
+_**Fig 6.** Projective Space of the `Real Axes` of a single qubit_ 
 
-<u>What figure 5 shows is that on the projective line</u> - 
+<u>What figure 6 shows is that on the projective line</u> - 
 1. The $\ket{0}$ and $i\ket{1}$ states occupy the poles of the same axis - we can label this the $z$-axis.
 2. The $\ket{+}$ and $\ket{-}$ states occupy the poles of the axis perpendicular to the $z$-axis - we can label this the $x$-axis. 
 
@@ -161,13 +178,14 @@ Now, we can repeat the same process for the imaginary axis for $\ket{1}$, which 
 
 ![Projective]({{image_path}}/C2_IM.svg){: .light }{: width="600" }
 ![Projective]({{image_path}}/C2_IMDark.svg){: .dark }{: width="600" }
-_**Fig 6.** Projective Space of the `Imaginary Axes` of a single qubit_ 
+_**Fig 7.** Projective Space of the `Imaginary Axes` of a single qubit_ 
 
-<u>What figure 6 shows is that on the projective line</u> - 
+<u>What figure 7 shows is that on the projective line</u> - 
 1. The $\ket{0}$ and $\ket{1}$ states occupy the poles of the same axis - we can label this the $z$-axis.
 2. The $\ket{i}$ and $\ket{-i}$ states occupy the poles of the axis perpendicular to the $z$-axis - we can label this the $y$-axis. 
 
 # IMPORTANT WRITE ABOUT THE X-Y PLANE
+
 
 ### Combining Real and Imaginary Axes
 Now that we have a good understanding of the projective space of the real and imaginary axes of a single qubit, we can combine them to form the full projective space. What is important to remember is that **the imaginary axes are perpendicular to the real axes**. Therefore the projective lines, which form planes, are also perpendicular to each other. We can call these planes - **Projective Planes**. The projective space of $\mathbb{C}^2$ or $\mathbb{CP}^1$ is formed by combining these 3 projective planes. This is shown in figure 7 below, however, the $y-z$ plane is not shown for clarity.
