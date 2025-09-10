@@ -2,6 +2,7 @@
     width: inherit;
     max-width: inherit; /* Optional: Sets a max width for large screens */
     align-self: center;
+    margin-bottom: 1rem;
 }
 
 .plot-container svg{
@@ -11,4 +12,16 @@
 
 .modebar-container {
   display: none; /* Example: hide Plotly's default modebar */
+}
+
+.updatemenu-item-rect{
+  fill: var(--button-bg) !important;
+}
+
+.slider-tick-rect{
+  fill: var(--text-color) !important;
+}
+
+.updatemenu-item-text{
+  fill: var(--text-color) !important;
 }
