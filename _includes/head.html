@@ -43,13 +43,6 @@
   seo_tags = seo_tags | replace: old_meta_clip, new_meta_clip %} {% endif %} {{
   seo_tags }}
 
-  {%- comment -%} Social Preview {%- endcomment -%}
-  {% if page.preview_image %}
-    <meta property="og:image" content="{{ page.preview_image | relative_url }}" />
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta property="twitter:image" content="{{ page.preview_image | relative_url }}" />
-  {% endif %}
-
   <title>
     {%- unless page.layout == 'home' -%} {{ page.title | append: ' | ' }} {%-
     endunless -%} {{ site.title }}
