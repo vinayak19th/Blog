@@ -14,6 +14,9 @@ comments: true
 While PennyLane does not support the `qml.KerasLayer` api since the transition from Keras 2 to Keras 3, we can still define a custom keras layer with certain modifications to allow for integration into keras models. Additionally, due to the multibackend support in Keras 3, these models can we trained using jax, pytorch or tensorflow. This demo will create a Keras 3 implementation of the `Data-ReUploading` models from the ['Quantum models as Fourier series
 '](https://pennylane.ai/qml/demos/tutorial_expressivity_fourier_series) demo.
 
+> This demo is featured on the [PennyLane Community Demos](https://pennylane.ai/qml/demos_community) page!
+{: .prompt-info }
+
 In case its not installed already, go ahead and install keras and tensorflow. By default the pip package contains Keras 3. For further instructions you can look as [this](https://www.tensorflow.org/install/pip) page. Remember to install CUDA enabled versions if you want GPU support. 
 Select which backend you want to install. Its better to have them in seperate environments
 We start by selecting our Keras 3 backend using the '*KERAS_BACKEND*' environment variable.
