@@ -10,7 +10,7 @@ pin: false
 math: true
 comments: true
 ---
-# Training Pennylane Circuits with the Keras 3 Multi-Backend
+# Training PennyLane Circuits with the Keras 3 Multi-Backend
 While PennyLane does not support the `qml.KerasLayer` api since the transition from Keras 2 to Keras 3, we can still define a custom keras layer with certain modifications to allow for integration into keras models. Additionally, due to the multibackend support in Keras 3, these models can we trained using jax, pytorch or tensorflow. This demo will create a Keras 3 implementation of the `Data-ReUploading` models from the ['Quantum models as Fourier series
 '](https://pennylane.ai/qml/demos/tutorial_expressivity_fourier_series) demo.
 
@@ -22,7 +22,7 @@ We start by selecting our Keras 3 backend using the '*KERAS_BACKEND*' environmen
 import os
 os.environ["KERAS_BACKEND"] = "jax" # This can be either JAX, tensorflow, or torch. (tensorflow by default)
 ```
-We can now import keras alongside its key modules `ops`. We then print the current backend to verify if everthing loaded correctly.
+We can now import keras alongside its key modules `ops`. We then print the current backend to verify if everything loaded correctly.
 
 ```python
 import keras
