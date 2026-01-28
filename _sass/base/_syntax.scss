@@ -256,3 +256,41 @@ div {
     }
   }
 }
+
+.nbook-output {
+    border-radius: 5px !important;
+    
+
+    &::before {
+        content: 'Output \21b5';
+        color: var(--text-color); 
+        font-family: var(--code-font-family); 
+        background-color: var(--nbook-output-bg, var(--main-bg)) ;
+        font-weight: 600;
+        align-items: center;
+        font-size: 0.9rem;
+        text-align: center;
+        display: flex;
+        border-radius: 5px;
+        justify-content: center;
+      }
+
+  &[class^='language-'] {
+    box-shadow: none;
+    border: 1px solid var(--nbook-output-border-color, var(--main-border-color));
+
+    .code-header {
+      display: none; // Restore display
+    }
+
+    .highlight {
+      background-color: var(--nbook-output-bg, var(--main-bg));
+      color: var(--text-color);
+      
+      // Force text color for output to be standard text color, overriding syntax highlighting if needed
+      pre {
+        color: var(--text-color);
+      }
+    }
+  }
+}
