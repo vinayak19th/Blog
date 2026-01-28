@@ -10,12 +10,14 @@ pin: false
 math: true
 comments: true
 ---
+
+> This demo is featured on the [PennyLane Community Demos](https://pennylane.ai/qml/demos_community) page!
+{: .prompt-info }
+
 # Training PennyLane Circuits with the Keras 3 Multi-Backend
 While PennyLane does not support the `qml.KerasLayer` api since the transition from Keras 2 to Keras 3, we can still define a custom keras layer with certain modifications to allow for integration into keras models. Additionally, due to the multibackend support in Keras 3, these models can be trained using jax, pytorch or tensorflow. This demo will create a Keras 3 implementation of the `Data-ReUploading` models from the ['Quantum models as Fourier series
 '](https://pennylane.ai/qml/demos/tutorial_expressivity_fourier_series) demo.
 
-> This demo is featured on the [PennyLane Community Demos](https://pennylane.ai/qml/demos_community) page!
-{: .prompt-info }
 
 In case its not installed already, go ahead and install keras and tensorflow. By default the pip package contains Keras 3. For further instructions you can look at [this](https://www.tensorflow.org/install/pip) page. Remember to install CUDA enabled versions if you want GPU support. 
 Select which backend you want to install. Its better to have them in separate environments
@@ -32,7 +34,8 @@ import keras
 from keras import ops
 print(f"Keras backend: {keras.backend.backend()}")
 ```
-**In order to ensure numerical stability with quantum circuits set the backend to use `float64`
+> In order to ensure numerical stability with quantum circuits set the backend to use `float64`
+{: .prompt-warning }
 
 ```python
 keras.backend.set_floatx('float64')
@@ -43,7 +46,8 @@ if keras.backend.backend() == "jax":
 ```
 Importing the supporting packages of numpy and matplotlib, alongside PennyLane. 
 
-*NOTE: Remember to install PennyLane with cuda for GPU support*
+> *NOTE: Remember to install PennyLane with cuda for GPU support*
+{: .prompt-warning }
 
 ```python
 import pennylane as qml
@@ -176,40 +180,40 @@ from keras.saving import serialize_keras_object, deserialize_keras_object
 
 To create a fully functional keras layer, the following methods **need to be implemented**
 
-#### 1. `__init__` method:
+##### 1. `__init__` method:
 The `__init__` method is used to accomplish the following:
 * Create the instance variables that define the QNode such as number of wires, circuit backend, etc.
 * Create the instance variables that define the circuit such as number of layers
 * Select the PennyLane interface based on keras backend to be ["tf","torch" or "Jax"]
 * Call the `super().__init__(**kwargs)` to pass generic layer properties such as '*name*' to the parent class `__init__` function.
 
-#### 2. `build()` method:
+##### 2. `build()` method:
 The `build()` method is used to instantiate the model weights at runtime based on input_shape. This can be used to create dynamic circuits with qubits equal to the number of input variables. However in this demo we are ignoring the input shape. Weights are created using the `add_weight` method, which you can read more about [here](https://keras.io/api/layers/base_layer/#addweight-method).
 
-***Note: DO NOT** apply any operations on the created weight here as it will cause issues with gradients*
+> ***Note: DO NOT** apply any operations on the created weight here as it will cause issues with gradients*
 
-#### 3. `compute_output_shape()` method:
+##### 3. `compute_output_shape()` method:
 This method is required in order to support model.summary() and model.save() functionality. This can be trivially implemented by passing an output_shape parameter in the `__init__` method similar to the depricated `qml.KerasLayer`, or we can implement circuit specific logic. In this example, our circuit outputs a single expectation value per input variable, therefore the output shape is '**(batch,num_of_wires)**'
 
-#### 4. `QNode` methods:
+##### 4. `QNode` methods:
 The 'QNode' methods consist of 2 sets of methods - 
 1. **Circuit Definition Methods** : These methods create the QNode circuit structure and can be implemented as a single method or a set of methods which implement different sub-circuits. Here we use 2 sub-circuit methods `self.W` and `self.S`, along with the `self.serial_quantum_model` method to define the final structure and returned measurements.
 2. **Circuit Creation Method** : This method defines the PennyLane device and the QNode from the circuit definition as an instance variables. 
 
 ***Note**: Pennylane requires the input to be the last argument to properly work with batched inputs*
 
-#### 5. `call()` method:
+##### 5. `call()` method:
 The `call()` methods needs to call the Qnode with the weight variable. Additional pre-processing can be applied before calling the circuit as well, for example we apply input variable scaling outside the circuit to take advantage of efficient vectorized execution for batched input. Depending on your specific model, we can also include pre-processing steps such as input scaling. Due to being wrapped by the autodiff of the various backends, we will still get valid gradients for these steps.
 
-#### 6. `draw_qnode` method:
+##### 6. `draw_qnode` method:
 A Utility methods to plot the QNode circuits
 
-#### 7. `get_config` method:
+##### 7. `get_config` method:
 This method needs to be implemented to support `model.save` functionality. It creates a config(dict) which defines the configuration of the current layer. 
 
 **Note**: While scalar data such as `int`, `float` and `str`, do not need the `serialize_keras_object` function, it is typically good practice to wrap all the parameters using this method. 
 
-#### 8. `from_config` method:
+##### 8. `from_config` method:
 This method needs to be implemented to support `model.save` functionality. It defines how to create an instance of the layer from a configuration. 
 
 ### JAX Specific Adaptations:
@@ -375,9 +379,6 @@ We can now test out our layer class by initializing it using the same arguments 
 
 ```python
 layers = 2  
-```
-
-```python
 keras_layer = QKerasLayer(layers = layers,
                           scaling=1.0,
                           circ_backend="default.qubit",
@@ -395,14 +396,24 @@ In order to test the layer functionality, let's integrate it into a simple keras
 inp = keras.layers.Input(shape=(1,))
 out = keras_layer(inp)
 model = keras.models.Model(inputs=inp,outputs=out,name="QuantumModel")
+model.summary()
 ```
-Lets look at the model summary. We can verify if everything looks correct based on - 
+Looking at the model summary. We can verify if everything looks correct based on - 
 * The number of trainable parameters - Since our weights are of the shape (layers+1,3), we can expect a shape of (2+1,3) = (3,3) = 9 parameters
 * The name of the layer matching what we passed in the instantiation
 
-```python
-model.summary()
 ```
+Model: "QuantumModel"
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━┓
+┃ Layer (type)                    ┃ Output Shape           ┃       Param # ┃
+┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━┩
+│ input_layer_9 (InputLayer)      │ (None, 1)              │             0 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ QuantumLayer (QKerasLayer)      │ (None, 1)              │             9 │
+└─────────────────────────────────┴────────────────────────┴───────────────┘
+```
+{: .nbook-output }
+
 ### Plotting inner QNode
 Integrating the layer into a model and calling the `model.summary()` function also calls the `layer.build` function. Therefore our circuit,weights and device should be instantiated. We can verify this calling our `draw_qnode` helper function to see the circuit plot.
 
@@ -417,19 +428,26 @@ _Figure 4: Visualization output_
 ```python
 keras_layer.layer_weights
 ```
+We can see the weights of the layer are initialized to random values.
+
+```
+<Variable path=QuantumLayer/variable_9, shape=(3, 3), dtype=float64, 
+    value=[[2.67741224 5.22959572 3.46291224]
+        [4.48692751 2.2729619  4.06532814]
+        [4.69508503 4.24126382 5.68455441]]>
+```
+{: .nbook-output }
+
 ### Test forward pass
 Similar to earlier, lets test our layer inference by calling the model with the random weights and plotting the outputs.
 
-***Note:** When using the torch backend, we might need to call the .to('cpu') on the model predictions before we can plot them if the system has a GPU*
+> ***Note:** When using the torch backend, we might need to call the .to('cpu') on the model predictions before we can plot them if the system has a GPU*
 
 ```python
 x = np.linspace(-6, 6, 70)
 random_quantum_model_y = model(x)
 # Uncomment the following when using the torch backend
 # random_quantum_model_y = random_quantum_model_y.to('cpu').detach().numpy()
-```
-
-```python
 plt.plot(x, random_quantum_model_y, c="blue")
 plt.ylim(-1, 1)
 plt.show()
@@ -453,6 +471,23 @@ We can then train the model with the `model.fit` function for x and target_y.
 model.fit(x=x,y=target_y,
           epochs=30)
 ```
+
+```
+Epoch 1/30
+3/3 ━━━━━━━━━━━━━━━━━━━━ 2s 209ms/step - loss: 0.2158
+Epoch 2/30
+3/3 ━━━━━━━━━━━━━━━━━━━━ 0s 51ms/step - loss: 0.1636
+.
+.
+.
+Epoch 29/30
+3/3 ━━━━━━━━━━━━━━━━━━━━ 0s 52ms/step - loss: 8.7295e-04
+Epoch 30/30
+3/3 ━━━━━━━━━━━━━━━━━━━━ 0s 52ms/step - loss: 8.6801e-04
+<keras.src.callbacks.history.History at 0x79bbf42a7ef0>
+```
+{: .nbook-output }
+
 ### Plotting the outputs of the trained model against the ground truth
 The model should train relatively fast. If your loss is $<10^{-2}$, the fit should be very good
 
@@ -487,19 +522,12 @@ Now lets test model loading and see if we can get the same inference with the lo
 ```python
 model2 = keras.models.load_model("./model.keras")
 ```
-
-```python
-model2.summary()
-```
 Now plotting the outputs we should see similiar if not identical results
 
 ```python
 predictions2 = model2(x)
 ## Uncomment the following line for the torch backend
 # predictions2 = predictions2.to('cpu').detach().numpy()
-```
-
-```python
 plt.plot(x, target_y, c="black")
 plt.scatter(x, target_y, facecolor="white", edgecolor="black")
 plt.plot(x, predictions2, c="blue")
