@@ -26,3 +26,4 @@ package-lock.json
 *.ipynb
 *.drawio.bkp
 .vscode/
+PostMedia/article/quantum/pennylane_keras/QPMeL_DAC.pdf
