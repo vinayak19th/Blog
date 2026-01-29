@@ -17,8 +17,8 @@ comments: true
 [![Project Website](https://img.shields.io/badge/Project-Website-blue.svg?style=for-the-badge&color=6495ED)](https://mpslab-asu.github.io/QPMeL/){: .dark}
 [![arXiv](https://img.shields.io/badge/arXiv-2312.01655-b31b1b.svg?style=for-the-badge)](https://arxiv.org/abs/2312.01655){: .light}
 [![arXiv](https://img.shields.io/badge/arXiv-2312.01655-b31b1b.svg?style=for-the-badge&color=ff6b6b)](https://arxiv.org/abs/2312.01655){: .dark}
-[![Github](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white&color=181825)](https://github.com/vinayak19th/QuantumPolarMetricLearning){: .light}
-[![Github](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=black&color=ececec)](https://github.com/vinayak19th/QuantumPolarMetricLearning){: .dark}
+[![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white&color=181825)](https://github.com/vinayak19th/QuantumPolarMetricLearning){: .light}
+[![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=black&color=ececec)](https://github.com/vinayak19th/QuantumPolarMetricLearning){: .dark}
 
 </center>
 
@@ -100,6 +100,9 @@ The QPMeL implementation leverages modern quantum computing frameworks:
 ```python
 import pennylane as qml
 import numpy as np
+
+# Define number of qubits for the quantum circuit
+n_qubits = 4
 
 # Define quantum device
 dev = qml.device("default.qubit", wires=n_qubits)
