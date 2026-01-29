@@ -9,18 +9,26 @@ tags: [quantum computing, quantum machine learning, pennylane, keras, deep learn
 pin: false
 math: true
 comments: true
+image: 
+  path: PostMedia/article/quantum/pennylane_keras/KerasCircuitLogoBlog.png
+  alt : Bloch Sphere
 ---
 <center markdown="block">
 
-[![Github](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white&color=181825)]("https://github.com/vinayak19th/PennyLane-Keras3/blob/main/demo.ipynb"){: .light}
-[![Github](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=black&color=ececec)]("https://github.com/vinayak19th/PennyLane-Keras3/blob/main/demo.ipynb"){: .dark}
+[![Github](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white&color=181825)](https://github.com/vinayak19th/PennyLane-Keras3/blob/main/demo.ipynb){: .light}
+[![Github](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=black&color=ececec)](https://github.com/vinayak19th/PennyLane-Keras3/blob/main/demo.ipynb){: .dark}
 [![Google Colab](https://img.shields.io/badge/Google%20Colab-%23F9A825.svg?style=for-the-badge&logo=googlecolab&logoColor=white)](https://colab.research.google.com/github/vinayak19th/PennyLane-Keras3/blob/main/demo.ipynb){: .light}
 [![Google Colab](https://img.shields.io/badge/Google%20Colab-%23F9A825.svg?style=for-the-badge&logo=googlecolab&logoColor=white&color=fab646)](https://colab.research.google.com/github/vinayak19th/PennyLane-Keras3/blob/main/demo.ipynb){: .dark}
+[![PyPI](https://img.shields.io/badge/PyPI-3775A9?logo=pypi&logoColor=fff&style=for-the-badge)](https://pypi.org/project/pennylane-keras3-layer/){: .light}
+[![PyPI](https://img.shields.io/badge/PyPI-3775A9?logo=pypi&logoColor=fff&style=for-the-badge&color=006DAD)](https://pypi.org/project/pennylane-keras3-layer/){: .dark}
 
 </center>
 
 > This demo is featured on the [PennyLane Community Demos](https://pennylane.ai/qml/demos_community) page!
 {: .prompt-info }
+
+> You can find the KerasCircuitLayer in the [`pennylane-keras3-layer`](https://github.com/vinayak19th/pennylane-keras-layer) package. (See PyPi link above)
+{: .prompt-danger }
 
 # Training PennyLane Circuits with the Keras 3 Multi-Backend
 While PennyLane does not support the `qml.KerasLayer` api since the transition from Keras 2 to Keras 3, we can still define a custom keras layer with certain modifications to allow for integration into keras models. Additionally, due to the multibackend support in Keras 3, these models can be trained using jax, pytorch or tensorflow. This demo will create a Keras 3 implementation of the `Data-ReUploading` models from the ['Quantum models as Fourier series
