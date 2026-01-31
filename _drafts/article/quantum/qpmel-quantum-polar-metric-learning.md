@@ -12,14 +12,7 @@ comments: true
 ---
 {% assign image_path = "/Blog/PostMedia/article/quantum/qpmel/" %}
 
-> This work represents a significant step forward in applying quantum computing to practical machine learning tasks, specifically addressing the challenges of metric learning on NISQ devices.
-
-<center markdown="block">
-
-[![arXiv](https://img.shields.io/badge/Paper-Paper.svg?&logo=googledocs&style=for-the-badge&color=B31B1B&logoColor=white)](https://arxiv.org/abs/2312.01655){: .light}
-[![arXiv](https://img.shields.io/badge/Paper-Paper.svg?&logo=googledocs&style=for-the-badge&color=ff6b6b)](https://arxiv.org/abs/2312.01655){: .dark}
-
-</center>
+[![arXiv](https://img.shields.io/badge/Paper-Paper.svg?&logo=googledocs&style=for-the-badge&color=B31B1B&logoColor=white)](https://arxiv.org/abs/2312.01655)
 
 ## Abstract
 Quantum Machine Learning (QML) promises richer data representations and improved learning by leveraging the unique properties of quantum computation. A necessary first step in QML is to encode classical data into quantum states. Static encoding mechanisms offer limited expressivity, while training quantum model suffers from barren plateaus, making optimization unstable and computationally expensive. We propose Quantum Projective Metric Learning (QPMeL) - a quantum-aware, classically-trained framework to learn dense and high-quality quantum encodings. QPMeL maps classical data to the surface of independent unit spheres in $\mathbb{R}^3$, which naturally aligns with the state of multiple unentangled qubits. QPMeL also introduces a novel Projective Metric Function (PMeF) to approximate Hilbert space similarity in $\mathbb{R}^3$, along with a gradient stabilization trick that further enhances training efficiency. QPMeL achieves state-of-the-art performance on MNIST, Fashion-MNIST, and Omniglot, scaling up to 10-class classification and 15-way few-shot learning with high accuracy using significantly fewer qubits. It is the first QML approach to support multi-modal (image+text) learning, achieving over 90\% accuracy in the 15-way-1-shot setting with only 20 qubits.
@@ -27,7 +20,7 @@ Quantum Machine Learning (QML) promises richer data representations and improved
 
 Quantum Machine Learning (QML) offers the potential for richer feature representations and faster learning, but practical applications are currently hindered by hardware limitations such as low qubit counts and short coherence times. A fundamental step in overcoming these barriers is effectively encoding classical data into quantum states, as the quality of this encoding directly impacts model performance. Previous approaches, including static encoding and trainable quantum circuits, have faced significant challenges: static methods often lack expressivity, while trainable circuits frequently suffer from "barren plateaus," making optimization unstable and computationally expensive.
 
-To solve these issues, the authors propose Quantum Projective Metric Learning (QPMeL), a novel framework that produces quantum-aware, classically-trained data encodings. The core innovation of QPMeL is the creation of a unified feature space where classical data is mapped to the surfaces of independent unit spheres, naturally aligning with the geometry of unentangled qubits. By employing a unique Projective Metric Function (PMeF) and a gradient stabilization trick, the framework learns dense, separable embeddings purely through classical training, thereby avoiding the instability associated with optimizing quantum circuits directly.
+To solve these issues, we propose Quantum Projective Metric Learning (QPMeL), a novel framework that produces quantum-aware, classically-trained data encodings. The core innovation of QPMeL is the creation of a unified feature space where classical data is mapped to the surfaces of independent unit spheres, naturally aligning with the geometry of unentangled qubits. By employing a unique Projective Metric Function (PMeF) and a gradient stabilization trick, the framework learns dense, separable embeddings purely through classical training, thereby avoiding the instability associated with optimizing quantum circuits directly.
 
 The main contributions introduced by QPMeL can be summarized into:
 1. A unified feature space consisting of independent spherical surfaces common to the classical and quantum domains created via a classical encoder which outputs angular encodings ($\theta,\gamma$).
@@ -49,7 +42,10 @@ Metric learning is the task of learning a distance function or similarity measur
 
 Metric learning has been a promising field within **Quantum Machine Learning (QML)** to address the '*input-side bottleneck*' in quantum circuits. Previous papers[^QFSL] have also applied few shot learning in the QML context to demonstrate the capabilities of **Quantum Metric Learning (QMeL)**. However, there remain major challenges with previous implementations.
 
-## II. The Challenge with QML
+> Here are some additional resources on metric learning -  [Good Medium Article[1]](https://medium.com/aimonks/understanding-metric-learning-and-contrastive-learning-a-beginners-guide-680115baf3a4), [Lecture PDF from Columbia[2]](https://www.cs.columbia.edu/~verma/talks/metric_learning_tutorial_verma.pdf), [Towards Data Science post[3]](https://towardsdatascience.com/metric-learning-tips-n-tricks-2e4cfee6b75b/)
+{: .prompt-info}
+
+## II. The Challenge in applying this to QML
 
 To use quantum models on classical data (like images), we first need to **encode** the data into a quantum state.
 - **Fixed Encodings** (like Angle Encoding) are simple but often lead to poor separability.
