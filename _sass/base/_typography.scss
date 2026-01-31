@@ -92,20 +92,35 @@ blockquote {
 
   &.prompt-definition,
   &.prompt-theorem {
-    border-left: 0.25rem solid;
+    font-family: 'Times New Roman', Times, serif;
+    margin-bottom: 0.5rem;
+    margin-top: 0.1rem;
+    text-align: justify;
+    padding: 0.4rem;
     padding-left: 1rem;
-    
+    padding-right: 1rem;
+    margin-left: 1.5rem;
+    margin-right: 1.5rem;
+    font-size: 1.1rem;
+    font-style: italic;
+    // border-left: none; // Remove the prompt border
+    border: 1px solid var(--input-focus-border-color);
+    @extend %rounded;
+    background-color: var(--sidebar-bg); // Ensure no background if it was set
+    color: var(--text-color) !important;
+
     &::before {
-      content: none;
+      content: none; // Remove the icon
     }
-  }
 
-  &.prompt-definition {
-    border-color: var(--prompt-definition-icon-color);
-  }
+    strong {
+      font-weight: 600;
+      font-style: normal !important;
+    }
 
-  &.prompt-theorem {
-    border-color: var(--prompt-theorem-icon-color);
+    p {
+       margin-bottom: 0;
+    }
   }
 }
 
