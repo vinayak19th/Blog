@@ -41,7 +41,8 @@ class Theme {
   static get #mode() {
     return (
       localStorage.getItem(this.#modeKey) ||
-      document.documentElement.getAttribute(this.#modeAttr)
+      document.documentElement.getAttribute(this.#modeAttr) ||
+      this.#getCookie(this.#modeKey)
     );
   }
 
@@ -113,16 +114,28 @@ class Theme {
   static #setDark() {
     document.documentElement.setAttribute(this.#modeAttr, this.DARK);
     localStorage.setItem(this.#modeKey, this.DARK);
+    this.#setCookie(this.#modeKey, this.DARK);
   }
 
   static #setLight() {
     document.documentElement.setAttribute(this.#modeAttr, this.LIGHT);
     localStorage.setItem(this.#modeKey, this.LIGHT);
+    this.#setCookie(this.#modeKey, this.LIGHT);
   }
 
   static #clearMode() {
     document.documentElement.removeAttribute(this.#modeAttr);
     localStorage.removeItem(this.#modeKey);
+    document.cookie = `${this.#modeKey}=; path=/; max-age=0`;
+  }
+
+  static #setCookie(name, value) {
+    document.cookie = `${name}=${value}; path=/; max-age=31536000; SameSite=Strict`;
+  }
+
+  static #getCookie(name) {
+    const match = document.cookie.match(new RegExp(`(^| )${name}=([^;]+)`));
+    return match ? match[2] : null;
   }
 
   /**
