@@ -7,10 +7,17 @@
   height: v.$topbar-height;
   background-color: var(--topbar-bg);
   padding-bottom: 0.3rem;
+  
+  /* Floating Effect */
+  width: 100%;
+  margin-top: 0.5rem;
+  border-radius: 1rem;
 
   @include bp.lt(bp.get(lg)) {
     @include mx.slide(top 0.2s ease);
-
+    width: 100%;
+    margin: 0;
+    border-radius: 0;
     left: 0;
   }
 }
