@@ -11,6 +11,8 @@
   font-size: 16px;
 }
 
+
+
 html {
   @media (prefers-color-scheme: light) {
     &:not([data-mode]),
@@ -416,6 +418,7 @@ mjx-container {
 
   @include bp.lt(bp.get(lg)) {
     @include mx.slide;
+    
   }
 
   @include bp.lg {
@@ -480,5 +483,14 @@ mjx-container {
 
   > :not(script) {
     margin-top: 3rem;
+  }
+}
+
+#main-content{
+  @include bp.lte(bp.get(md)) {
+      @include mx.max-w-100;
+
+      padding-left: 1.2rem;
+      padding-right: 1.2rem;
   }
 }

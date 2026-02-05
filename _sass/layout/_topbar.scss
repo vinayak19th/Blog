@@ -113,8 +113,10 @@
 }
 
 #sidebar-trigger,
-#search-trigger {
+#search-trigger,
+#home-trigger {
   display: none;
+  color: var(--topbar-text-color);
 
   @include bp.lt(bp.get(lg)) {
     display: block;
