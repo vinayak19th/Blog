@@ -342,7 +342,7 @@ header {
   position: fixed;
   right: 1rem;
   bottom: calc((v.$footer-height-large - v.$back2top-size / 2) + 6rem);
-  background: var(--topbar-bg);
+  background: var(--float-button-bg);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
 
