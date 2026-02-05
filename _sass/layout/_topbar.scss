@@ -5,25 +5,36 @@
 
 #topbar-wrapper {
   height: v.$topbar-height;
-  background-color: var(--topbar-bg);
+  background-color: none;
   padding-bottom: 0.3rem;
   
   /* Floating Effect */
   width: 100%;
   margin-top: 0.5rem;
-  border-radius: 1rem;
+  
+  /* Fixes */
+  overflow: hidden; /* Fix background bleeding */
+  top: 0.5rem; /* Maintain gap when sticky */
+  position: sticky; /* Ensure it stays sticky with the offset */
+  z-index: 1000; /* Ensure it stays on top */
 
-  @include bp.lt(bp.get(lg)) {
-    @include mx.slide(top 0.2s ease);
-    width: 100%;
-    margin: 0;
-    border-radius: 0;
-    left: 0;
+  @include bp.lte(bp.get(md)) {
+    @include mx.max-w-100;
+    margin : auto;
+    width: 95% !important;
+    top:auto;
+    bottom: 2rem;
+    position: fixed;
   }
+
 }
 
 #mode-toggle {
       margin-right: 1.3rem;
+      @include bp.lte(bp.get(md)) {
+        @include mx.max-w-100;
+          margin-top: 0.2em;
+      }
     }
 
 #topbar {
@@ -31,8 +42,13 @@
 
   padding-top: 0.1rem;
   padding-bottom: 0.2rem;
-  border-bottom: 2px solid var(--sidebar-border-color);
-  border-radius: 100px;
+
+  background-color: var(--topbar-bg);
+  
+  border: 1.7px solid var(--topbar-border-color);
+  border-radius: 5rem;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
 
   #breadcrumb {
     font-size: 1rem;
@@ -68,8 +84,8 @@
   @include bp.lte(bp.get(md)) {
     @include mx.max-w-100;
 
-    border-radius: 0px;
-    border-bottom: 1px solid var(--sidebar-border-color);
+    border-radius: 5rem;
+    border: 1px solid var(--topbar-border-color);
   }
 
   @include bp.lt(bp.get(lg)) {

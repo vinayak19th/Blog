@@ -44,7 +44,8 @@
   --avatar-border-color: rgb(206 206 206 / 90%);
 
   /* Topbar */
-  --topbar-bg: #181825;
+  --topbar-bg: rgba(24, 24, 37, 0.8);
+  --topbar-border-color: #9ba2bb;
   --topbar-text-color: var(--text-color);
   --search-border-color: rgb(55 55 55);
   --search-icon-color: rgb(100 102 105);
@@ -56,6 +57,7 @@
   --btn-paginator-hover-color: #2e2e2e;
 
   /* Posts */
+  --toc-popup-background-color: rgba(24, 24, 37, 0.8);
   --toc-highlight: #74b2f3;
   --toc-popup-border-color: #373737;
   --tag-hover: rgb(43 56 62);
