@@ -494,3 +494,9 @@ mjx-container {
       padding-right: 1.2rem;
   }
 }
+
+/* Card Style */
+.card {
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}

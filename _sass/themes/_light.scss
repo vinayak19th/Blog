@@ -1,6 +1,6 @@
 @mixin styles {
   /* Framework color */
-  --main-bg: #FFFFFF;
+  --main-bg: rgb(251, 251, 251);
   --mask-bg: #c1c3c5;
   --main-border-color: #34343c;
 
@@ -59,10 +59,9 @@
   --toc-popup-border-color: #000000;
   --btn-share-color: gray;
   --btn-share-hover-color: #0d6efd;
-  --card-bg: white;
+  --card-bg: rgba(233, 233, 233, 0.3);
   --card-hover-bg: #e2e2e2;
-  --card-shadow: rgb(104 104 104 / 5%) 0 2px 6px 0,
-    rgba(148, 148, 148, 0.15) 0 0 10px 2px;
+  --card-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15), 0px 1px 2px 0px rgba(0, 0, 0, 0.3);
   --footnote-target-bg: lightcyan;
   --tb-odd-bg: #fbfcfd;
   --tb-border-color: #eaeaea;
