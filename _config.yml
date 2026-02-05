@@ -223,6 +223,7 @@ exclude:
   - "*.config.js"
   - "package*.json"
   - node_modules
+  - vendor
 
 jekyll-archives:
   enabled: [categories, tags]
