@@ -1,14 +1,13 @@
 services:
     jekyll:
-        image: vinayak1998th/resume-container
+        image: vinayak1998th/resume-container:npm 
         container_name: blog-run
-        command: bundle exec jekyll serve --draft --watch --force_polling --verbose --host 0.0.0.0
+        command: >
+            -c "bundle exec jekyll serve --drafts --watch --force_polling --host 0.0.0.0"
         ports:
             - 4000:4000
             - 35729:35729
         volumes:
-            - ./:/site
-            - gem_cache:/usr/local/bundle
-
-volumes:
-  gem_cache:
+            - .:/site
+        environment:
+            - JEKYLL_ENV=development
