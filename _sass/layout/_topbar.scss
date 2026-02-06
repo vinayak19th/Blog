@@ -3,6 +3,7 @@
 @use '../abstracts/breakpoints' as bp;
 @use '../abstracts/placeholders';
 
+
 #topbar-wrapper {
   height: v.$topbar-height;
   background-color: none;
@@ -15,8 +16,17 @@
   /* Fixes */
   overflow: hidden; /* Fix background bleeding */
   top: 0.5rem; /* Maintain gap when sticky */
-  position: sticky; /* Ensure it stays sticky with the offset */
-  z-index: 1000; /* Ensure it stays on top */
+
+   /* Approximate column widths from default.html structure: col-11 lg, col-10 xl */
+   /* Container max-widths:
+      lg: 960px -> col-11 ~= 880px
+      xl: 1140px -> col-10 ~= 950px
+      xxl: 1320px -> col-10 ~= 1100px
+      But the container has surrounding padding too.
+      Let's use percentages for fluidity which matches Bootstrap grid somewhat close.
+   */
+  @include bp.lg { width: 90%; }
+  @include bp.xl { width: 82%; }
 
   @include bp.lte(bp.get(md)) {
     @include mx.max-w-100;
@@ -25,6 +35,7 @@
     top:auto;
     bottom: 2rem;
     position: fixed;
+    margin-left: 2.5%;
   }
 
 }

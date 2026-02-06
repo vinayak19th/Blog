@@ -5,7 +5,7 @@
 const btnSbTrigger = document.getElementById('sidebar-trigger');
 const btnSearchTrigger = document.getElementById('search-trigger');
 const btnCancel = document.getElementById('search-cancel');
-const content = document.querySelectorAll('#main-wrapper>.container>.row');
+const content = document.querySelectorAll('.search-hidden');
 const topbarTitle = document.getElementById('topbar-title');
 const search = document.getElementById('search');
 const resultWrapper = document.getElementById('search-result-wrapper');
@@ -83,6 +83,7 @@ export function displaySearch() {
   btnCancel.addEventListener('click', () => {
     MobileSearchBar.off();
     ResultSwitch.off();
+    hints.classList.remove(UNLOADED);
   });
 
   input.addEventListener('focus', () => {
@@ -99,12 +100,11 @@ export function displaySearch() {
         hints.classList.remove(UNLOADED);
       } else {
         ResultSwitch.off();
+        hints.classList.remove(UNLOADED);
       }
     } else {
       ResultSwitch.on();
-      if (isMobileView()) {
-        hints.classList.add(UNLOADED);
-      }
+      hints.classList.add(UNLOADED);
     }
   });
 }

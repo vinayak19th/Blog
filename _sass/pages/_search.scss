@@ -37,7 +37,8 @@ search {
 
 #search-result-wrapper {
   display: none;
-  height: 100%;
+  // height: 100%;
+  flex: 1 1 auto;
   width: 100%;
   overflow: auto;
 
