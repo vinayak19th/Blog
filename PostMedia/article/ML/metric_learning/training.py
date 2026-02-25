@@ -7,6 +7,7 @@ and their corresponding distance updates in the latent space over training epoch
 import plotly.graph_objects as go
 import base64
 import os
+from plotly_gif import GIF, capture
 
 def encode_image(img_name: str) -> str:
     """Encodes an image to a base64 string for Plotly layout.images."""
@@ -81,6 +82,55 @@ def create_animation():
     def dist(p1, p2):
         return math.sqrt((p1[0] - p2[0])**2 + (p1[1] - p2[1])**2)*5
 
+    def get_arrow_anno(p1, p2, color, text, visible=True):
+        # Calculate parallel offset pointing up-left or similar normal
+        dx = p2[0] - p1[0]
+        dy = p2[1] - p1[1]
+        length = math.sqrt(dx**2 + dy**2)
+        nx = -dy / length
+        ny = dx / length
+        
+        gap = 0.4
+        
+        # Start and end points for the arrow line (parallel)
+        x1 = p1[0] + gap * nx
+        y1 = p1[1] + gap * ny
+        x2 = p2[0] + gap * nx
+        y2 = p2[1] + gap * ny
+        
+        arr_color = color if visible else "rgba(0,0,0,0)"
+        
+        arr = dict(
+            x=x2, y=y2,
+            ax=x1, ay=y1,
+            xref='x', yref='y',
+            axref='x', ayref='y',
+            text='',
+            showarrow=True,
+            arrowhead=2,
+            arrowside='start+end',
+            arrowsize=1.5,
+            arrowwidth=2 if visible else 0.1,
+            arrowcolor=arr_color
+        )
+        
+        # Text above the arrow
+        gap_text = 0.9
+        txt_x = (p1[0] + p2[0])/2 + gap_text * nx 
+        txt_y = (p1[1] + p2[1])/2 + gap_text * ny
+        
+        txt_color = color if visible else "rgba(0,0,0,0)"
+        
+        txt = dict(
+            x=txt_x, y=txt_y,
+            xref='x', yref='y',
+            text=text if visible else "",
+            showarrow=False,
+            font=dict(color=txt_color, size=14)
+        )
+        
+        return arr, txt
+
     for ep in epochs:
         pos = latent_points[ep]['pos']
         neg = latent_points[ep]['neg']
@@ -124,38 +174,41 @@ def create_animation():
         scatter_x = [latent_anchor[0], pos[0], None, latent_anchor[0], neg[0]]
         scatter_y = [latent_anchor[1], pos[1], None, latent_anchor[1], neg[1]]
         
+        # Transparent replica of the loss annotation text to prevent fly-in
+        loss_annotations_trace_inv = go.Scatter(
+            x=[mid_ap_x, mid_an_x], 
+            y=[mid_ap_y + 0.3, mid_an_y + 0.3], 
+            mode='text',
+            textfont=dict(color=["rgba(0,0,0,0)", "rgba(0,0,0,0)"], size=[14, 14]),
+            showlegend=False
+        )
+
         # --- Standard Frame ---
         frame_data = proj_lines + [
             go.Scatter(
                 x=scatter_x, y=scatter_y, mode='lines', 
-                line=dict(color='black', width=1, dash='dot'), showlegend=False
+                line=dict(color='black', width=2, dash='dot'), showlegend=False
             )
         ] + markers + [
-            # Dummy trace for loss_annotations_trace (No d(A,P) text, but maintain trace structure for Plotly)
-            go.Scatter(x=[mid_ap_x, mid_an_x], y=[mid_ap_y, mid_an_y], mode='text', text=["", ""], showlegend=False),
+            loss_annotations_trace_inv,
             # Keep the explicit loss bar visible
             go.Scatter(x=[9.0, 9.6, 9.6, 9.0, 9.0], y=[0, 0, loss_val, loss_val, 0], fill="toself", fillcolor="rgba(255, 0, 0, 0.5)", line=dict(color="red", width=2), mode='lines', showlegend=False),
             # Keep the explicit loss value text visible
             go.Scatter(x=[9.3], y=[loss_val + 0.4], mode='text', text=[f"<b>Loss: {loss_val:.2f}</b>"], textfont=dict(color="red", size=14), showlegend=False)
         ]
         name_std = f"Epoch {ep}"
-        
-        # Plotly explicitly needs us to overwrite the extra annotations from the Loss frame
-        # by providing invisible annotations at those indices (7th and 8th)
-        clear_arrows = [
-            dict(text="", showarrow=False, opacity=0),
-            dict(text="", showarrow=False, opacity=0),
-            dict(text="", showarrow=False, opacity=0),
-            dict(text="", showarrow=False, opacity=0)
-        ]
+        ap_arr_inv, ap_txt_inv = get_arrow_anno(latent_anchor, pos, "black", f"d(A,P)={d_ap:.1f}", visible=False)
+        an_arr_inv, an_txt_inv = get_arrow_anno(latent_anchor, neg, "black", f"d(A,N)={d_an:.1f}", visible=False)
+        clear_arrows = [ap_arr_inv, ap_txt_inv, an_arr_inv, an_txt_inv]
+
         frames.append(go.Frame(data=frame_data, name=name_std, layout=go.Layout(annotations=base_annotations + clear_arrows)))
         frame_names.append(name_std)
         
         # --- Loss Measurement Frame ---
-        # Bolder, darker distance lines
+        # Bolder, darker distance lines representing the active measurement
         loss_lines = go.Scatter(
             x=scatter_x, y=scatter_y, mode='lines', 
-            line=dict(color='black', width=3, dash='dot'), showlegend=False
+            line=dict(color='black', width=5, dash='dot'), showlegend=False
         )
         
         # Loss Annotations (placed at midpoint of the lines)
@@ -163,7 +216,6 @@ def create_animation():
             x=[mid_ap_x, mid_an_x], 
             y=[mid_ap_y + 0.3, mid_an_y + 0.3], 
             mode='text',
-            text=[f"d(A,P)={d_ap:.2f}", f"d(A,N)={d_an:.2f}"],
             textfont=dict(color=["#2ca02c", "#d62728"], size=[14, 14]),
             showlegend=False
         )
@@ -182,53 +234,8 @@ def create_animation():
             textfont=dict(color="red", size=14), showlegend=False
         )
         
-        def get_arrow_anno(p1, p2, color, text):
-            # Calculate parallel offset pointing up-left or similar normal
-            dx = p2[0] - p1[0]
-            dy = p2[1] - p1[1]
-            length = math.sqrt(dx**2 + dy**2)
-            nx = -dy / length
-            ny = dx / length
-            
-            gap = 0.4
-            
-            # Start and end points for the arrow line (parallel)
-            x1 = p1[0] + gap * nx
-            y1 = p1[1] + gap * ny
-            x2 = p2[0] + gap * nx
-            y2 = p2[1] + gap * ny
-            
-            arr = dict(
-                x=x2, y=y2,
-                ax=x1, ay=y1,
-                xref='x', yref='y',
-                axref='x', ayref='y',
-                text='',
-                showarrow=True,
-                arrowhead=2,
-                arrowside='start+end',
-                arrowsize=1,
-                arrowwidth=1.2,
-                arrowcolor=color
-            )
-            
-            # Text above the arrow
-            gap_text = 0.7
-            txt_x = (p1[0] + p2[0])/2 + gap_text * nx
-            txt_y = (p1[1] + p2[1])/2 + gap_text * ny
-            
-            txt = dict(
-                x=txt_x, y=txt_y,
-                xref='x', yref='y',
-                text=text,
-                showarrow=False,
-                font=dict(color=color, size=16)
-            )
-            
-            return arr, txt
-            
-        ap_arr, ap_txt = get_arrow_anno(latent_anchor, pos, "black", "<b>AP</b>")
-        an_arr, an_txt = get_arrow_anno(latent_anchor, neg, "black", "<b>AN</b>")
+        ap_arr, ap_txt = get_arrow_anno(latent_anchor, pos, "black", f"d(A,P)={d_ap:.1f}", visible=True)
+        an_arr, an_txt = get_arrow_anno(latent_anchor, neg, "black", f"d(A,N)={d_an:.1f}", visible=True)
         arrow_annos = [ap_arr, ap_txt, an_arr, an_txt]
         
         frame_data_loss = proj_lines + [loss_lines] + markers + [loss_annotations_trace, loss_bar, loss_label]
