@@ -79,7 +79,7 @@ def create_animation():
     
     import math
     def dist(p1, p2):
-        return math.sqrt((p1[0] - p2[0])**2 + (p1[1] - p2[1])**2)*25
+        return math.sqrt((p1[0] - p2[0])**2 + (p1[1] - p2[1])**2)*5
 
     for ep in epochs:
         pos = latent_points[ep]['pos']
@@ -88,7 +88,7 @@ def create_animation():
         # Calculate distances for the loss frame
         d_ap = dist(latent_anchor, pos)
         d_an = dist(latent_anchor, neg)
-        loss_val = max(d_ap - d_an + 1.0, 0) # margin = 1.0
+        loss_val = max(d_ap - d_an + 5, (d_an-d_ap)*0.01) # margin = 1.0
         
         # Midpoints for labels
         mid_ap_x, mid_ap_y = (latent_anchor[0] + pos[0]) / 2, (latent_anchor[1] + pos[1]) / 2
@@ -106,17 +106,17 @@ def create_animation():
             go.Scatter(
                 x=[latent_anchor[0]], y=[latent_anchor[1]], mode='markers+text', 
                 marker=dict(size=18, color='#1f77b4', line=dict(width=2, color='white')),
-                text=["Anchor"], textposition="bottom center", name='Anchor'
+                text=["Anchor"], textposition="bottom center", name='Anchor', showlegend=True
             ),
             go.Scatter(
                 x=[pos[0]], y=[pos[1]], mode='markers+text', 
                 marker=dict(size=18, color='#2ca02c', line=dict(width=2, color='white')),
-                text=["Positive"], textposition="bottom center", name='Positive'
+                text=["Positive"], textposition="bottom center", name='Positive', showlegend=True
             ),
             go.Scatter(
                 x=[neg[0]], y=[neg[1]], mode='markers+text', 
                 marker=dict(size=18, color='#d62728', line=dict(width=2, color='white')),
-                text=["Negative"], textposition="bottom center", name='Negative'
+                text=["Negative"], textposition="bottom center", name='Negative', showlegend=True
             )
         ]
 
@@ -277,11 +277,18 @@ def create_animation():
                      method="animate",
                      args=[[None], dict(frame=dict(duration=0, redraw=False), mode="immediate", transition=dict(duration=0))])
             ],
-            direction="left", pad=dict(r=10, t=25), showactive=False, x=0.15, xanchor="right", y=0, yanchor="top"
+            direction="left", pad=dict(r=10, t=25), showactive=False, x=0.18, xanchor="right", y=0.05, yanchor="top"
         )],
         sliders=sliders,
+        legend=dict(
+            orientation="h",
+            yanchor="bottom",
+            y=1.02,
+            xanchor="center",
+            x=0.5
+        ),
         width=1000,
-        height=550,
+        height=600, # Increased height to make room for legend at the top
         plot_bgcolor="white",
         paper_bgcolor="white",
         font=dict(family="Arial, sans-serif")
