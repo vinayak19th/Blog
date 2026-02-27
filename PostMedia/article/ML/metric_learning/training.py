@@ -7,7 +7,6 @@ and their corresponding distance updates in the latent space over training epoch
 import plotly.graph_objects as go
 import base64
 import os
-from plotly_gif import GIF, capture
 
 def encode_image(img_name: str) -> str:
     """Encodes an image to a base64 string for Plotly layout.images."""
@@ -343,12 +342,47 @@ function animateFlow(time) {
             }
         }
     });
+        requestAnimationFrame(animateFlow);
+    }
     requestAnimationFrame(animateFlow);
-}
-requestAnimationFrame(animateFlow);
-</script>
-''')
+    </script>
+    ''')
     print(f"Animation saved to {out_file}")
+    
+    # Export to GIF using Pillow and Kaleido
+    print("Generating GIF, please wait...")
+    import io
+    from PIL import Image
+    gif_images = []
+    
+    # Render Epoch 0 starting frame
+    base_img_bytes = fig.to_image(format="png", width=1000, height=600)
+    gif_images.append(Image.open(io.BytesIO(base_img_bytes)))
+    
+    for i, frame in enumerate(frames):
+        # We need a new figure to avoid mutating the original
+        frame_fig = go.Figure(layout=fig.layout)
+        # Add the frame's traces
+        frame_fig.add_traces(frame.data)
+        # Override the annotations if the frame has custom ones (like arrows/loss text)
+        if frame.layout and frame.layout.annotations:
+            frame_fig.update_layout(annotations=frame.layout.annotations)
+        
+        # Write to byte buffer and load into PIL Image
+        img_bytes = frame_fig.to_image(format="png", width=1000, height=600)
+        gif_images.append(Image.open(io.BytesIO(img_bytes)))
+        print(f"Rendered frame {i+1}/{len(frames)}")
+        
+    gif_out = os.path.join(os.path.dirname(os.path.abspath(__file__)), "metric_learning.gif")
+    if len(gif_images) > 0:
+        gif_images[0].save(
+            gif_out,
+            save_all=True,
+            append_images=gif_images[1:],
+            duration=800, # 800ms per frame to match animation slider transition
+            loop=0
+        )
+        print(f"GIF saved to {gif_out}")
 
 if __name__ == "__main__":
     create_animation()
