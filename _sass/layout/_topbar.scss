@@ -84,3 +84,64 @@
     display: block;
   }
 }
+
+#mode-toggle {
+  background-color: var(--theme-toggle-bg, #cbd5e1); /* Light gray for light mode */
+  border: none;
+  border-radius: 1.5rem;
+  width: 2.75rem;
+  height: 1.65rem;
+  padding: 0;
+  position: relative;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  margin-right: 0.75rem; /* space before search bar */
+  transition: background-color 0.3s ease;
+
+  i {
+    position: absolute;
+    width: 1.35rem;
+    height: 1.35rem;
+    border-radius: 50%;
+    background-color: #fff; /* White circle */
+    color: #64748b; /* Slate gray moon icon */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    left: 0.15rem;
+    transition: transform 0.3s ease, color 0.3s ease, background-color 0.3s ease;
+  }
+}
+
+html[data-mode='dark'] #mode-toggle {
+  background-color: var(--search-icon-color); /* Blue for dark mode */
+  i {
+    transform: translateX(1.1rem);
+    color: var(--topbar-bg); /* Amber sun icon */
+
+    &::before {
+      content: "\f185"; /* fa-sun */
+    }
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  html:not([data-mode="light"]) #mode-toggle {
+    background-color: var(--search-icon-color);
+    i {
+      transform: translateX(1.1rem);
+      color: var(--topbar-bg);
+
+      &::before {
+        content: "\f185"; /* fa-sun */
+      }
+    }
+  }
+}
+
+/* Hide mode toggle when mobile search is active */
+#search-cancel.d-block ~ #mode-toggle {
+  display: none !important;
+}
