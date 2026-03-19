@@ -83,3 +83,23 @@
     </div>
   </div>
 </header>
+
+<script>
+  // Topbar Headroom Logic
+  document.addEventListener('DOMContentLoaded', function() {
+    const topbar = document.getElementById('topbar-wrapper');
+    let lastScrollY = window.scrollY;
+    
+    window.addEventListener('scroll', () => {
+      const currentScrollY = window.scrollY;
+      
+      if (currentScrollY > lastScrollY && currentScrollY > 50) {
+        topbar.classList.add('topbar-hidden');
+      } else if (currentScrollY < lastScrollY) {
+        topbar.classList.remove('topbar-hidden');
+      }
+      
+      lastScrollY = currentScrollY;
+    }, { passive: true });
+  });
+</script>

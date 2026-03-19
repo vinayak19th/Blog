@@ -4,6 +4,17 @@
 @use '../abstracts/placeholders';
 
 #topbar-wrapper {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  transition: transform 0.3s ease-in-out;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+
+  &.topbar-hidden {
+    transform: translateY(-100%);
+  }
+
   height: v.$topbar-height;
   background-color: var(--topbar-bg);
 
