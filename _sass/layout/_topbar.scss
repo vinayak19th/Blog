@@ -115,7 +115,7 @@
     width: 1.35rem;
     height: 1.35rem;
     border-radius: 50%;
-    background-color: #fff; /* White circle */
+    background-color: #ffffff; /* White circle */
     color: #64748b; /* Slate gray moon icon */
     display: flex;
     align-items: center;
@@ -141,6 +141,7 @@ html[data-mode='dark'] #mode-toggle {
 @media (prefers-color-scheme: dark) {
   html:not([data-mode="light"]) #mode-toggle {
     background-color: var(--search-icon-color);
+
     i {
       transform: translateX(1.1rem);
       color: var(--topbar-bg);
