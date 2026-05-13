@@ -224,6 +224,8 @@ exclude:
   - "package*.json"
   - node_modules
   - vendor
+  - "*.ipynb"
+  - "*.drawio"
 
 jekyll-archives:
   enabled: [categories, tags]
