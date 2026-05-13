@@ -2,12 +2,18 @@ services:
     jekyll:
         build: .
         container_name: blog-run
+        # Added 'bash' to the command so the -c flag actually works
         command: >
-            -c "bundle exec jekyll serve --drafts --watch --force_polling --host 0.0.0.0"
+            bash -c "bundle exec jekyll serve --drafts --watch --force_polling --host 0.0.0.0"
         ports:
             - 4000:4000
             - 35729:35729
         volumes:
             - .:/site
+            - bundle_data:/usr/local/bundle # Use the named volume here
         environment:
+            - BUNDLE_PATH=/usr/local/bundle
             - JEKYLL_ENV=development
+
+volumes:
+    bundle_data: # Define the named volume
