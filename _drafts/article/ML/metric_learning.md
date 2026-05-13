@@ -104,14 +104,6 @@ Because Euclidean distance is derived directly from the inner product ($d(p_0, p
 ---
 ## The Training Engine - Loss Functions
 
-```html
- <center>
-   <div class="plotly-figure">
-       {% include plotly/metric_learning/Metric_Training_triplet.html %}
-   </div>
-  <i style="margin-top:0.4rem"><b>Fig 3.</b> Interactive Real Projective Space</i> 
-</center> -->
-```
 
 To shape this vector space so that distance equals semantic meaning, we rely on specific loss functions during training. Let's break down three of the most important ones.
 
