@@ -107,7 +107,31 @@ The Haar Measure (often denoted as $\mu_N$) is the specific "correction factor" 
 
 To understand the Haar measure mathematically, we have to look at the space where quantum circuits live. Parameterized quantum circuits generate unitary matrices. The set of all possible $d \times d$ unitary matrices forms a continuous, compact, mathematical group called the Unitary Group, denoted as $U(d)$ (where $d = 2^n$ for $n$ qubits). (*Note: This is the parent group for SU(d), the difference being that SU(d) require the unitaries to have real determinants*). 
 
+To better understand the effect of the haar measure its worth visualizing what sampling states with and without the haar measure looks like. We can do this for a single qubit by uniformly sampling the parameters of a [ROT-Gate](https://docs.pennylane.ai/en/stable/code/api/pennylane.Rot.html) and visualizing the resulting states on the Bloch Sphere (I explain this idea [here]({{ "/posts/bloch/" | relative_url }}))
 
+<button type="button" class="btn btn-article" data-bs-toggle="collapse" href="#non_haar_code" aria-expanded="false" aria-controls="non_haar_code">Show Code</button>
+
+<div class="collapse" id="non_haar_code" markdown=1>
+
+```python
+@qp.qnode(dev)
+def not_a_haar_random_unitary():
+    # Sample all parameters from their flat uniform distribution
+    phi, theta, omega = 2 * np.pi * np.random.uniform(size=3)
+    qp.Rot(phi, theta, omega, wires=0)
+    return qp.state()
+```
+</div>
+
+<center>
+   <div class="plotly-figure light">
+       {% include plotly/barren_plateaus/no_haar_light.html %}
+   </div>
+   <div class="plotly-figure dark">
+       {% include plotly/barren_plateaus/no_haar_dark.html %}
+   </div>
+  <i style="margin-top:0.4rem"><b>Fig 4.</b> States sampled without the Haar Measure.</i> 
+</center>
 
 
 # References
