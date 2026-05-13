@@ -10,6 +10,6 @@ pin: false
 math: true
 comments: true
 ---
-> This Blog post tries to provide an intuitive understanding of the paper []"Barren plateaus in quantum neural network training landscapes" by McClean et al](https://arxiv.org/abs/1803.11173).
+> This Blog post tries to provide an intuitive understanding of the paper [Barren plateaus in quantum neural network training landscapes" by McClean et al](https://arxiv.org/abs/1803.11173).
 
 # Introduction
