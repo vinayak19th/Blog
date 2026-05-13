@@ -71,10 +71,10 @@ _**Fig 2.**  Visually understanding expressivity.[Based on Fig 1 from Holmes et 
 
 Essentially Fig 2 allows us to visualize the how much of the $SU(N)$ group can the [span](https://understandinglinearalgebra.org/sec-span.html) of a given parameterized unitary $U(\theta)$ cover. When trying to analyze highly expressive unitaries, we specifically compare them to the *[Haar Measure](https://en.wikipedia.org/wiki/Haar_measure)*[^wiki_haar_measure].  
 
-### 3.1.2. Breaking down the Haar Measure
+## 3.2. Breaking down the Haar Measure
 To properly understand the Haar Measure, we must first breakdown the concept of a *[measure](https://en.wikipedia.org/wiki/Measure_(mathematics)*. Pennylane has a great blog post on the topic[^pennylane_haar_measure], which I'll try and simplify.
 
-#### What is a Measure?
+### 3.2.1. What is a Measure?
 > **Definition 2 (Measure).** A measure is a formal integration weight that counteracts coordinate distortion, ensuring that the integral of a function over a curved space remains independent of how that space is parameterized.
 {: .prompt-definition }
 
@@ -93,15 +93,21 @@ The concept of the measure is a correction applied to address this issue. We nee
 1. **During Integration** : The measure tells you exactly how much extra "weight" to give the equator compared to the poles when adding up the total volume or area.
 2. **For Sampling**: The measure gives you the exact blueprint for how to skew your random number generator so that every physical square inch of the sphere has a perfectly equal chance of being picked.
 
-**Can you formulate a rough mental picture for how this relates to Quantum States?** (<a data-bs-toggle="collapse" href="#measure_in_QML" aria-expanded="false" aria-controls="measure_in_QML">Show Answer</a>)
+Can you formulate a rough mental picture for how this relates to Quantum States?(<a data-bs-toggle="collapse" href="#measure_in_QML" aria-expanded="false" aria-controls="measure_in_QML">Show Answer</a>)
 
 <div class="collapse" id="measure_in_QML" markdown=1>
 > **Measures in QML**: Just like points on a 3D sphere, quantum operations (unitary matrices) live in a complex, high-dimensional, curved mathematical space called the Unitary Group. If you just randomly guess angles for the gates in your Parameterized Quantum Circuit (PQC), the resulting quantum states will "clump up" in certain mathematical corners of the Hilbert space, just like the points clumped at the poles of our Earth example.
 {: .prompt-definition }
 </div>
 
-#### Introducing the Haar Measure
+### 3.2.2. Introducing the Haar Measure ($\mu_N$)
 As highlighted <a data-bs-toggle="collapse" href="#measure_in_QML" aria-expanded="false" aria-controls="measure_in_QML">here</a>, if we uniformly sample parameters for our unitaries (like those in Fig 2) from the rotational gate range (ex. $[-\pi,\pi]$), the resulting quantum states we produced would be highly concentrated into specific sub-regions of the quantum Hilbert space. 
+
+The Haar Measure (often denoted as $\mu_N$) is the specific "correction factor" designed for quantum spaces to ensure we are exploring the space of all possible quantum operations with perfect, unbiased uniformity.
+
+To understand the Haar measure mathematically, we have to look at the space where quantum circuits live. Parameterized quantum circuits generate unitary matrices. The set of all possible $d \times d$ unitary matrices forms a continuous, compact, mathematical group called the Unitary Group, denoted as $U(d)$ (where $d = 2^n$ for $n$ qubits). (*Note: This is the parent group for SU(d), the difference being that SU(d) require the unitaries to have real determinants*). 
+
+
 
 
 # References
