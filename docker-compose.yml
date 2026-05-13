@@ -3,8 +3,7 @@ services:
         build: .
         container_name: blog-run
         # Added 'bash' to the command so the -c flag actually works
-        command: >
-            bash -c "bundle exec jekyll serve --drafts --watch --force_polling --host 0.0.0.0"
+        command: -c "bundle exec jekyll serve --drafts --watch --force_polling --host 0.0.0.0"
         ports:
             - 4000:4000
             - 35729:35729
