@@ -32,3 +32,6 @@ PostMedia/article/quantum/pennylane_keras/QPMeL_DAC.pdf
 
 # MACOS Crap 
 *.DS_Store
+
+# Drawio temp
+*.drawio.dtmp
