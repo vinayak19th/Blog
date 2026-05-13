@@ -29,3 +29,6 @@ PostMedia/article/quantum/pennylane_keras/QPMeL_DAC.pdf
 
 # Ignore all jupyter checkpoints folders
 .ipynb_checkpoints/
+
+# MACOS Crap 
+*.DS_Store
