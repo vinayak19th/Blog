@@ -23,7 +23,9 @@ package-lock.json
 !.vscode/tasks.json
 
 # Removing misc files
-*.ipynb
 *.drawio.bkp
 .vscode/
 PostMedia/article/quantum/pennylane_keras/QPMeL_DAC.pdf
+
+# Ignore all jupyter checkpoints folders
+.ipynb_checkpoints/
