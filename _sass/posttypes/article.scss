@@ -1,32 +1,33 @@
 .article {
   text-align: justify;
 
-  mjx-container{
+  mjx-container {
     margin-left: 0.25rem;
     margin-right: 0.25rem;
   }
 }
 
-.article h2{
+.article h2 {
   font-family: 'Times New Roman', Times, serif;
   font-size: 1.35em;
-  font-weight:600;
+  font-weight: 600;
   margin-bottom: 0.4rem;
   margin-top: 1.8rem;
 }
 
 
-.article h3{
+.article h3 {
   font-size: 1.2em;
   font-weight: bolder;
   margin-bottom: 0.2rem;
   font-family: 'Times New Roman', Times, serif;
 }
 
-.article h4{
+.article h4 {
   font-size: 1.15em;
   font-weight: bolder;
   font-family: 'Times New Roman', Times, serif;
-  text-align: center;
   padding: 0.5rem;
+  padding-top: 0rem;
+  margin-top: 0rem;
 }
